@@ -1,12 +1,5 @@
-p {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
-h1,h2 {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  text-align:  center;
-}
-
+h1,
+h2,
 div {
   text-align: center;
 }
@@ -18,8 +11,16 @@ h2 {
 }
 
 @keyframes color-change {
-  0%  {color: red;}
-  50%  {color: orange;}
-  70%  {color: blue;}
-  100% {color: green;}
+  0% {
+    color: red;
+  }
+  50% {
+    color: orange;
+  }
+  70% {
+    color: blue;
+  }
+  100% {
+    color: green;
+  }
 }

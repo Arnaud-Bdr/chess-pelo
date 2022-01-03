@@ -1,1 +1,4 @@
 /* Add application styles & imports to this file! */
+p,h1,h2 {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
