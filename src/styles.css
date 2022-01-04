@@ -1,4 +1,9 @@
 /* Add application styles & imports to this file! */
+body {
+  background-color: rgba(157, 212, 216, 0.836);
+}
+
 p,h1,h2 {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color : rgb(55, 51, 59)
 }

@@ -3,10 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
+import { ChessboardComponent } from './chessboard/chessboard.component';
+import { ChesscellComponent } from './chesscell/chesscell.component';
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule ],
-  declarations: [ AppComponent ],
-  bootstrap:    [ AppComponent ]
+  imports: [BrowserModule, FormsModule],
+  declarations: [AppComponent, ChessboardComponent, ChesscellComponent],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
