@@ -6,9 +6,13 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./chesscell.component.css'],
 })
 export class ChesscellComponent implements OnInit {
-  @Input() i: number;
-  @Input() j: number;
+  @Input() letter: string;
+  @Input() number: number;
+
+  value: number;
 
   constructor() {}
-  ngOnInit() {}
+  ngOnInit() {
+    this.value = this.letter.charCodeAt(0) + this.number;
+  }
 }

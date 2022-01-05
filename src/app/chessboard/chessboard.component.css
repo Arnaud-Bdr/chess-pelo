@@ -3,10 +3,15 @@
 }
 
 table {
-  --main-border-color: rgb(8, 54, 54);
+  border-collapse: collapse;
   margin-left: auto;
   margin-right: auto;
-  border: 1px solid  var(--main-border-color);
-  background-color: var(--main-border-color);
   text-align: center;
+  border: 2px solid brown;
+}
+
+tr {
+  border-spacing: 0;
+  margin: 0;
+  padding: 0;
 }

@@ -1,7 +1,12 @@
 td {
-  width: 30px;
-  height: 30px;
-  background-color: aliceblue;
-  vertical-align: middle;
-  text-align: center;
+  width: 35px;
+  height: 35px;
+}
+
+.black {
+  background-color: black;
+}
+
+.white {
+  background-color: white;
 }
