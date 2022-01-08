@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DragService } from '../services/drag.service';
-
 @Component({
   selector: 'chesscell',
   templateUrl: './chesscell.component.html',
@@ -25,11 +24,6 @@ export class ChesscellComponent implements OnInit {
   }
 
   drop(ev) {
-    console.log('ICI');
     ev.preventDefault();
-  }
-
-  dragenter(event) {
-    event.preventDefault();
   }
 }

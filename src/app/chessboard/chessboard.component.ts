@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DragService } from '../services/drag.service';
 import { GameService } from '../services/game.service';
-import { polyfill } from 'mobile-drag-drop';
 @Component({
   selector: 'chessboard',
   templateUrl: './chessboard.component.html',
@@ -14,7 +13,6 @@ export class ChessboardComponent implements OnInit {
 
   ngOnInit() {
     this.chessBoard = this.gs.getChessBoardInitialState();
-    console.log('cc');
   }
 
   allowDrop(ev) {
@@ -28,10 +26,16 @@ export class ChessboardComponent implements OnInit {
     if (ev.target.id == 'cell') {
       ev.target.firstChild.id = id;
     } else {
+      if (ev.target.id.includes('q')) {
+        document.getElementById('gif').style.display = 'block';
+        document.getElementById('gif').style.animationName = 'show-gif';
+        // Reseting gif state
+        setTimeout(() => {
+          document.getElementById('gif').style.display = 'none';
+          document.getElementById('gif').style.animationName = '';
+        }, 5900);
+      }
       ev.target.id = id;
     }
-  }
-  dragenter(event) {
-    event.preventDefault();
   }
 }
