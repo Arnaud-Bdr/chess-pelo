@@ -1,5 +1,10 @@
 <div id="chessboard">
-  <div id="row" *ngFor="let row of chessBoard; let i = index">
+  <div
+    id="row"
+    *ngFor="let row of chessBoard; let i = index"
+    cdkDropList
+    cdkDropListSortingDisabled
+  >
     <chesscell *ngFor="let cell of row" [cell]="cell"></chesscell>
   </div>
 </div>

@@ -1,3 +1,4 @@
-<div id="cell" [ngClass]="value % 2 == 0 ? 'black' : 'white'" [class]="cell.piece">
-  <p id="cellText">{{ cell.letter }}{{ cell.number }}</p>
+<div id="cell"[ngClass]="value % 2 == 0 ? 'black' : 'white'">
+  <div id="piece" [class]="cell.piece" cdkDrag>
+  <!--p id="cellText">{{ cell.letter }}{{ cell.number }}</p-->
 </div>
