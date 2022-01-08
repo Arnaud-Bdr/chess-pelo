@@ -11,6 +11,6 @@ export class ChesscellComponent implements OnInit {
 
   constructor() {}
   ngOnInit() {
-    this.value = this.cell.letter.charCodeAt(0) + this.cell.number;
+    this.value = this.cell.letter.charCodeAt(0) +this.cell.position.y;
   }
 }

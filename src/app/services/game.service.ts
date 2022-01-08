@@ -18,7 +18,7 @@ export class GameService {
       this.chessBoard.push([]);
       for (let i = 0; i < this.width; ++i) {
         var cell = { letter : this.rowLetterArray[i],
-                     number : 8-j,
+                     position : {y : 8-j, x : i },
                      piece : this.chessBoardPieces[j][i] }
         this.chessBoard[j].push(cell);
       }
