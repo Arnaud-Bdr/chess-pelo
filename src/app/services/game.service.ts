@@ -1,5 +1,6 @@
 export class GameService {
 
+
   chessBoard = [];
   width: number = 8;
   height: number = 8;
@@ -25,4 +26,6 @@ export class GameService {
     }
     return this.chessBoard;
   }
+
+
 }
