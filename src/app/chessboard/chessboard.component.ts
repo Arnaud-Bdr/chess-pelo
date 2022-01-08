@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GameService } from '../services/game.service';
 
 @Component({
   selector: 'chessboard',
@@ -7,22 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChessboardComponent implements OnInit {
   chessBoard = [];
-  rowArray: string[] = ['a', 'b', 'c', 'd', 'e' ,'f' , 'g', 'h'];
-  width: number = 8;
-  height: number = 8;
 
-  constructor() {}
+  constructor(private gs: GameService) {}
 
   ngOnInit() {
-    for (let j = 0; j < this.height; ++j) {
-      this.chessBoard.push([]);
-      for (let i = 0; i < this.width; ++i) {
-        this.chessBoard[j].push({ letter : this.rowArray[i], number : 8-j });
-      }
-    }
-
-    console.log(this.rowArray[0].charCodeAt(0));
-
+    this.chessBoard = this.gs.getChessBoardInitialState();
   }
-  
 }
