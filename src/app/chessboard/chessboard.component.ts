@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DragService } from '../services/drag.service';
 import { GameService } from '../services/game.service';
-
+import { polyfill } from 'mobile-drag-drop';
 @Component({
   selector: 'chessboard',
   templateUrl: './chessboard.component.html',
@@ -30,5 +30,8 @@ export class ChessboardComponent implements OnInit {
     } else {
       ev.target.id = id;
     }
+  }
+  dragenter(event) {
+    event.preventDefault();
   }
 }

@@ -28,4 +28,8 @@ export class ChesscellComponent implements OnInit {
     console.log('ICI');
     ev.preventDefault();
   }
+
+  dragenter(event) {
+    event.preventDefault();
+  }
 }

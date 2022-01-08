@@ -1,5 +1,5 @@
 <div id="cell" [ngClass]="value % 2 == 0 ? 'black' : 'white'">
-  <div [id]="cell.piece" draggable="true" (dragstart)="drag($event)">
+  <div [id]="cell.piece" draggable="true" (dragstart)="drag($event)" (dragenter)="dragenter($event)">
     <!--p id="cellText">{{ value }}</p -->
   </div>
 </div>

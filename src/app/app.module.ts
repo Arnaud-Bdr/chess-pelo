@@ -9,6 +9,8 @@ import { GameService } from './services/game.service';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DragService } from './services/drag.service';
 
+
+
 @NgModule({
   imports: [BrowserModule, FormsModule, DragDropModule],
   declarations: [AppComponent, ChessboardComponent, ChesscellComponent],
