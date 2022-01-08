@@ -1,11 +1,9 @@
 <div id="chessboard">
-  <table>
-    <tr *ngFor="let row of chessBoard; let i = index">
+    <div id="row" *ngFor="let row of chessBoard; let i = index">
       <chesscell
         *ngFor="let cell of row"
         [letter]="cell.letter"
         [number]="cell.number"
       ></chesscell>
-    </tr>
-  </table>
+    </div>
 </div>

@@ -1,1 +1,3 @@
-<td [ngClass]="value % 2 == 0 ? 'black' : 'white'"></td>
+<div id="cell" [ngClass]="value % 2 == 0 ? 'black' : 'white'">
+  <p id="cellText">{{ letter }}{{ number }}</p>
+</div>
