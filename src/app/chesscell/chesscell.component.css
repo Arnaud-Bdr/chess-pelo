@@ -6,13 +6,20 @@
   position: relative;
 }
 
+
 .black {
-  background-color: black;
+  background-color: rgb(56, 91 119,0.5);
+  background-image: url("https://images.chesscomfiles.com/chess-themes/pieces/neo/150/wp.png");
+  background-size: contain;
+  background-repeat: no-repeat;
   color: white;
 }
 
 .white {
-  background-color: white;
+  background-color: rgb(105, 149, 184,0.5);
+  background-image: url("https://images.chesscomfiles.com/chess-themes/pieces/neo/150/bp.png");
+  background-size: contain;
+  background-repeat: no-repeat;
   color: black;
 }
 

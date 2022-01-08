@@ -1,15 +1,18 @@
 #chessboard {
-  position: absolute;
   width: 96vw;
   height: 96vw;
+  max-width: 800px;
+  max-height: 800px;
   display: flex;
   flex-direction: column;
-  right: 2vw;
-  left: 2vw;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #row {
   width: inherit;
   height: inherit;
+  max-width: inherit;
+  max-height: inherit;
   overflow: auto;
 }
