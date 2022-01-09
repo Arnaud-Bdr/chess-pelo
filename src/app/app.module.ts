@@ -14,6 +14,6 @@ import { GifService } from './services/gif.service';
   imports: [BrowserModule, FormsModule, DragDropModule],
   declarations: [AppComponent, ChessboardComponent, ChesscellComponent],
   bootstrap: [AppComponent],
-  providers: [GameService, DragService, ifService],
+  providers: [GameService, DragService, GifService],
 })
 export class AppModule {}
