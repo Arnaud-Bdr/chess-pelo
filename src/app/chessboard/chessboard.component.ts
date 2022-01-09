@@ -47,18 +47,20 @@ export class ChessboardComponent implements OnInit {
     this.gif.src = '';
     this.gifContainer.style.display = 'none';
     this.gifContainer.style.animationName = '';
+    //this.gifContainer.style.animationDuration = '0';
     setTimeout(() => this.showGif(), 50);
   }
 
   showGif() {
     let r = Math.floor(Math.random() * this.gifService.gifs.length);
-    console.log('r');
+    console.log(r);
     let gifModel = this.gifService.getGifById(r);
     this.gif.src = gifModel.url;
     this.gifContainer.style.display = 'block';
     this.gifContainer.style.animationName = 'show-gif';
-    this.gifContainer.style.animationDuration =
-      gifModel.durationMS / 1000 + ' s';
+    let duration = gifModel.durationMS / 1000 + 's';
+    this.gifContainer.style.animationDuration = duration;
+    console.log(duration);
   }
 
   reset;

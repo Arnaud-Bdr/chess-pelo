@@ -27,7 +27,6 @@
   top: 33%;
   left: 33%;
   z-index: 10;
-  animation-duration: 6s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
   display: none;

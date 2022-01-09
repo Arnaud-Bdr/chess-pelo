@@ -5,6 +5,7 @@ export class GifService {
   gifs: any[] = [
     { name: 'jo_come_on_1.gif', durationMS: 6000 },
     { name: 'jo_lets_go_1.gif', durationMS: 2800 },
+    { name: 'acezoo_surpris.gif', durationMS: 000 },
   ];
 
   getGifById(id: number) {
