@@ -12,6 +12,7 @@ export class ChessboardComponent implements OnInit {
   gifs: any[];
   gifContainer: HTMLElement;
   gif: HTMLImageElement;
+  timeout: any;
 
   constructor(
     private gs: GameService,
@@ -35,7 +36,7 @@ export class ChessboardComponent implements OnInit {
     if (ev.target.id == 'cell') {
       ev.target.firstChild.id = id;
     } else {
-      console.log("cc" + ev.target.id);
+      console.log('cc' + ev.target.id);
       if (!ev.target.id.includes('p')) {
         this.resetAndShowGif();
       }
@@ -44,6 +45,9 @@ export class ChessboardComponent implements OnInit {
   }
 
   resetAndShowGif() {
+    this.timeout != null
+    ? clearTimeout(this.timeout)
+    : null;
     this.gifContainer != null
       ? (this.gifContainer.style.display = 'none')
       : null;
@@ -59,6 +63,8 @@ export class ChessboardComponent implements OnInit {
     this.gifContainer.style.animationName = 'show-gif';
     this.gifContainer.style.animationDuration =
       gifModel.durationMS / 1000 + 's';
-    setTimeout(() => {this.gifContainer.style.display = 'none';},gifModel.durationMS );  
+    this.timeout = setTimeout(() => {
+      this.gifContainer.style.display = 'none';
+    }, gifModel.durationMS);
   }
 }
