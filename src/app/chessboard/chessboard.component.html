@@ -2,7 +2,7 @@
   <div id="row" *ngFor="let row of chessBoard; let i = index">
     <chesscell *ngFor="let cell of row" [cell]="cell"></chesscell>
   </div>
-  <div id="gif" class="gif">
-    <img src="src/app/assets/images/jo_come_on_shadow_box_1.gif" />
+  <div id="gif-container ">
+    <img id="gif" />
   </div>
 </div>

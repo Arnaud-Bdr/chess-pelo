@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DragService } from '../services/drag.service';
 import { GameService } from '../services/game.service';
+import { GifService } from '../services/gif.service';
 @Component({
   selector: 'chessboard',
   templateUrl: './chessboard.component.html',
@@ -9,10 +10,19 @@ import { GameService } from '../services/game.service';
 export class ChessboardComponent implements OnInit {
   chessBoard = [];
 
-  constructor(private gs: GameService, private ds: DragService) {}
+  gifContainer: HTMLElement;
+  gif: HTMLImageElement;
+
+  constructor(
+    private gs: GameService,
+    private ds: DragService,
+    private gifService: GifService
+  ) {}
 
   ngOnInit() {
     this.chessBoard = this.gs.getChessBoardInitialState();
+    this.gifContainer = document.getElementById('gif-container');
+    this.gif = <HTMLImageElement>document.getElementById('gif');
   }
 
   allowDrop(ev) {
@@ -27,15 +37,21 @@ export class ChessboardComponent implements OnInit {
       ev.target.firstChild.id = id;
     } else {
       if (ev.target.id.includes('q')) {
-        document.getElementById('gif').style.display = 'block';
-        document.getElementById('gif').style.animationName = 'show-gif';
-        // Reseting gif state
-        setTimeout(() => {
-          document.getElementById('gif').style.display = 'none';
-          document.getElementById('gif').style.animationName = '';
-        }, 5900);
       }
       ev.target.id = id;
     }
+  }
+
+  showGif() {
+    let gifModel = this.gifService.getGifsById(0);
+    this.gif.src = gifModel.url;
+    this.gifContainer.style.display = 'block';
+    this.gifContainer.style.animationName = 'show-gif';
+    this.gifContainer.style.animationDuration = gifModel.durationMS / 1000 + " s";
+    // Reseting gif state
+    setTimeout(() => {
+      this.gifContainer.style.display = 'none';
+      this.gifContainer.style.animationName = '';
+    }, 5900);
   }
 }
