@@ -4,7 +4,7 @@ export class GifService {
   endUrl: String = '?raw=true';
   gifs: any[] = [{ name: 'jo_come_on_1.gif', durationMS: 6000 }];
 
-  getGifsById(id: number) {
+  getGifById(id: number) {
     let gif = this.gifs[id];
     gif.url = this.baseUrl + gif.name + this.endUrl;
     return gif;

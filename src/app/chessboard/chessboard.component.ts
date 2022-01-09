@@ -44,7 +44,7 @@ export class ChessboardComponent implements OnInit {
   }
 
   showGif() {
-    let gifModel = this.gifService.getGifsById(0);
+    let gifModel = this.gifService.getGifById(0);
     this.gif.src = gifModel.url;
     this.gifContainer.style.display = 'block';
     this.gifContainer.style.animationName = 'show-gif';
