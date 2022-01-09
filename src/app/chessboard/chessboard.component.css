@@ -21,8 +21,8 @@
 }
 
 #gif-container {
-  width: fit-content;
-  height: fit-content;
+  width: 220;
+  height: 170;
   position: absolute;
   top: 33%;
   left: 33%;

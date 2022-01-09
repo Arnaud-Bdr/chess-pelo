@@ -36,24 +36,30 @@ export class ChessboardComponent implements OnInit {
     if (ev.target.id == 'cell') {
       ev.target.firstChild.id = id;
     } else {
-      if (ev.target.id.includes('q')) {
-        this.showGif();
+      if (!ev.target.id.includes('p')) {
+        this.resetAndShowGif();
       }
       ev.target.id = id;
     }
   }
 
+  resetAndShowGif() {
+    this.gif.src = '';
+    this.gifContainer.style.display = 'none';
+    this.gifContainer.style.animationName = '';
+    setTimeout(() => this.showGif(), 50);
+  }
+
   showGif() {
-    let gifModel = this.gifService.getGifById(0);
+    let r = Math.floor(Math.random() * this.gifService.gifs.length);
+    console.log('r');
+    let gifModel = this.gifService.getGifById(r);
     this.gif.src = gifModel.url;
     this.gifContainer.style.display = 'block';
     this.gifContainer.style.animationName = 'show-gif';
     this.gifContainer.style.animationDuration =
       gifModel.durationMS / 1000 + ' s';
-    // Reseting gif state
-    setTimeout(() => {
-      this.gifContainer.style.display = 'none';
-      this.gifContainer.style.animationName = '';
-    }, gifModel.durationMS);
   }
+
+  reset;
 }
