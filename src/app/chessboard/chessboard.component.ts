@@ -36,7 +36,6 @@ export class ChessboardComponent implements OnInit {
     if (ev.target.id == 'cell') {
       ev.target.firstChild.id = id;
     } else {
-      console.log('cc' + ev.target.id);
       if (!ev.target.id.includes('p')) {
         this.resetAndShowGif();
       }
