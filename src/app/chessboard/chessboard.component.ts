@@ -8,8 +8,8 @@ import { GifService } from '../services/gif.service';
   styleUrls: ['./chessboard.component.css'],
 })
 export class ChessboardComponent implements OnInit {
-  chessBoard = [];
-
+  chessBoard: any[];
+  gifs: any[];
   gifContainer: HTMLElement;
   gif: HTMLImageElement;
 
@@ -21,8 +21,7 @@ export class ChessboardComponent implements OnInit {
 
   ngOnInit() {
     this.chessBoard = this.gs.getChessBoardInitialState();
-    this.gifContainer = document.getElementById('gif-container');
-    this.gif = <HTMLImageElement>document.getElementById('gif');
+    this.gifs = this.gifService.getGifs();
   }
 
   allowDrop(ev) {
@@ -44,17 +43,17 @@ export class ChessboardComponent implements OnInit {
   }
 
   resetAndShowGif() {
-    this.gif.src = '';
-    this.gifContainer.style.display = 'none';
-    this.gifContainer.style.animationName = '';
-    //this.gifContainer.style.animationDuration = '0';
+    this.gifContainer != null
+      ? (this.gifContainer.style.display = 'none')
+      : null;
     setTimeout(() => this.showGif(), 10);
   }
 
   showGif() {
     let r = Math.floor(Math.random() * this.gifService.gifs.length);
+    this.gifContainer = document.getElementById('gif-container' + r);
+    this.gif = <HTMLImageElement>document.getElementById('gif' + r);
     let gifModel = this.gifService.getGifById(r);
-    this.gif.src = gifModel.url;
     this.gifContainer.style.display = 'block';
     this.gifContainer.style.animationName = 'show-gif';
     this.gifContainer.style.animationDuration =

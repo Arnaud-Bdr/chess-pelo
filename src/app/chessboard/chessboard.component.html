@@ -1,8 +1,12 @@
 <div id="chessboard" (dragover)="allowDrop($event)" (drop)="drop($event)">
-  <div id="row" *ngFor="let row of chessBoard; let i = index">
+  <div class="row" *ngFor="let row of chessBoard; let i = index">
     <chesscell *ngFor="let cell of row" [cell]="cell"></chesscell>
   </div>
-  <div id="gif-container">
-    <img id="gif" />
+  <div
+    class="gif-container"
+    id="{{ 'gif-container' + i }}"
+    *ngFor="let gif of gifs; let i = index"
+  >
+    <img id="{{ 'gif' + i }}" [src]="gif.url" />
   </div>
 </div>

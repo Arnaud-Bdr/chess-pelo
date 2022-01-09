@@ -12,7 +12,7 @@
   position: relative;
 }
 
-#row {
+.row {
   width: inherit;
   height: inherit;
   max-width: inherit;
@@ -20,12 +20,12 @@
   overflow: auto;
 }
 
-#gif-container {
+.gif-container {
   width: 220;
   height: 170;
   position: absolute;
   top: 33%;
-  left: 33%;
+  left: 40%;
   z-index: 10;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
