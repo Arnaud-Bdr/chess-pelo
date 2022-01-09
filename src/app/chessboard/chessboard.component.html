@@ -1,5 +1,10 @@
-<div id="chessboard" (dragover)="allowDrop($event)" (drop)="drop($event)">
-  <div class="row" *ngFor="let row of chessBoard; let i = index">
+<div id="chessboard">
+  <div
+    class="row"
+    *ngFor="let row of chessBoard; let i = index"
+    (dragover)="allowDrop($event)"
+    (drop)="drop($event)"
+  >
     <chesscell *ngFor="let cell of row" [cell]="cell"></chesscell>
   </div>
   <div

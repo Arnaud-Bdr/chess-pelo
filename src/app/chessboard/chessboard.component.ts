@@ -35,6 +35,7 @@ export class ChessboardComponent implements OnInit {
     if (ev.target.id == 'cell') {
       ev.target.firstChild.id = id;
     } else {
+      console.log("cc" + ev.target.id);
       if (!ev.target.id.includes('p')) {
         this.resetAndShowGif();
       }
@@ -58,5 +59,6 @@ export class ChessboardComponent implements OnInit {
     this.gifContainer.style.animationName = 'show-gif';
     this.gifContainer.style.animationDuration =
       gifModel.durationMS / 1000 + 's';
+    setTimeout(() => {this.gifContainer.style.display = 'none';},gifModel.durationMS );  
   }
 }
