@@ -10,7 +10,7 @@ export class GameService {
     ['  ', '  ', '  ', '  ', '  ', '  ', '  ', '  '],
     ['  ', '  ', '  ', '  ', '  ', '  ', '  ', '  '],
     ['  ', '  ', '  ', '  ', '  ', '  ', '  ', '  '],
-    ['wp', 'wp', 'wp', 'p', 'wp', 'wp', 'wp', 'wp'],
+    ['wp', 'wp', 'wp', 'wp', 'wp', 'wp', 'wp', 'wp'],
     ['wr', 'wn', 'wb', 'wq', 'wk', 'wb', 'wn', 'wr'],
   ];
   getChessBoardInitialState() {
