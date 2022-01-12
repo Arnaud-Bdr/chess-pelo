@@ -1,15 +1,27 @@
 #chessboard {
   width: 96vw;
   height: 96vw;
-  max-width: 800px;
-  max-height: 800px;
+  max-width: 700px;
+  max-height: 700px;
   display: flex;
   flex-direction: column;
   margin-left: auto;
   margin-right: auto;
-  border: black solid;
+  border: rgba(255, 255, 255, 0.8) solid;
   border-radius: 1%;
   position: relative;
+  animation: 1.5s cubic-bezier(0.4, 0.81, 0.62, 1.18) 0s 1 expandsChessBoard
+    forwards;
+  transform-origin: initial;
+}
+
+@keyframes expandsChessBoard {
+  0% {
+    transform: scale(0.);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .row {

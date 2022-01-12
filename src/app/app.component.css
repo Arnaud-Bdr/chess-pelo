@@ -13,4 +13,22 @@ div {
   padding-top: 15px;
   text-shadow: -2px 2px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000,
     -1px -1px 0 #000;
+  margin-left: auto;
+  margin-right: auto;
+  animation: 2s ease 0s 1 expands forwards;
+  max-width: 90vw;
+  min-width: 200px;
+}
+
+#banner {
+  text-align: center;
+}
+
+@keyframes expands {
+  0% {
+    width: 200px;
+  }
+  100% {
+    width: 90vw;
+  }
 }
