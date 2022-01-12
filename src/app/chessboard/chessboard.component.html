@@ -1,9 +1,9 @@
-<div id="chessboard">
+<div id="chessboard" cdkDropListGroups>
   <div
     class="row"
     *ngFor="let row of chessBoard; let i = index"
-    (dragover)="allowDrop($event)"
-    (drop)="drop($event)"
+    cdkDropList
+    cdkDropListSortingDisabled
   >
     <chesscell *ngFor="let cell of row" [cell]="cell"></chesscell>
   </div>
@@ -15,3 +15,10 @@
     <img id="{{ 'gif' + i }}" [src]="gif.url" />
   </div>
 </div>
+
+<!--div
+class="row"
+*ngFor="let row of chessBoard; let i = index"
+(dragover)="allowDrop($event)"
+(drop)="drop($event)"
+-->

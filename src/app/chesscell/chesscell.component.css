@@ -13,6 +13,16 @@
   color: inherit;
 }
 
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+img {
+  object-fit: contain;
+  width: inherit;
+  height: inherit;
+}
+
 .black {
   background-color: rgba(56, 91, 119, 0.3);
 }
@@ -29,18 +39,7 @@
   background-color: rgba(136, 173, 204, 0.3);
 }
 
-#bp,
-#bb,
-#br,
-#bn,
-#bk,
-#bq,
-#wp,
-#wb,
-#wr,
-#wn,
-#wk,
-#wq {
+.piece {
   background-size: contain;
   background-repeat: no-repeat;
   width: 100%;
@@ -48,50 +47,67 @@
   position: sticky;
 }
 
-#br {
+.cdk-drag-preview.piece {
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.br,
+.cdk-drag-preview.br {
   background-image: url('https://images.chesscomfiles.com/chess-themes/pieces/neo/150/br.png');
 }
 
-#bn {
+.bn,
+.cdk-drag-preview.bn {
   background-image: url('https://images.chesscomfiles.com/chess-themes/pieces/neo/150/bn.png');
 }
 
-#bb {
+.bb,
+.cdk-drag-preview.bb {
   background-image: url('https://images.chesscomfiles.com/chess-themes/pieces/neo/150/bb.png');
 }
 
-#bq {
+.bq,
+.cdk-drag-preview.bq {
   background-image: url('https://images.chesscomfiles.com/chess-themes/pieces/neo/150/bq.png');
 }
 
-#bk {
+.bk,
+.cdk-drag-preview.bk {
   background-image: url('https://images.chesscomfiles.com/chess-themes/pieces/neo/150/bk.png');
 }
 
-#bp {
+.bp,
+.cdk-drag-preview.bp {
   background-image: url('https://images.chesscomfiles.com/chess-themes/pieces/neo/150/bp.png');
 }
 
-#wr {
+.wr,
+.cdk-drag-preview.wr {
   background-image: url('https://images.chesscomfiles.com/chess-themes/pieces/neo/150/wr.png');
 }
 
-#wb {
+.wb,
+.cdk-drag-preview.wb {
   background-image: url('https://images.chesscomfiles.com/chess-themes/pieces/neo/150/wb.png');
 }
 
-#wq {
+.wq,
+.cdk-drag-preview.wq {
   background-image: url('https://images.chesscomfiles.com/chess-themes/pieces/neo/150/wq.png');
 }
 
-#wk {
+.wk,
+.cdk-drag-preview.wk {
   background-image: url('https://images.chesscomfiles.com/chess-themes/pieces/neo/150/wk.png');
 }
 
-#wp {
+.wp,
+.cdk-drag-preview.wp {
   background-image: url('https://images.chesscomfiles.com/chess-themes/pieces/neo/150/wp.png');
 }
 
-#wn {
+.wn,
+.cdk-drag-preview.wn {
   background-image: url('https://images.chesscomfiles.com/chess-themes/pieces/neo/150/wn.png');
 }
