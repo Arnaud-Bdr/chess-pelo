@@ -1,3 +1,4 @@
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Component, Input, OnInit } from '@angular/core';
 import { DragService } from '../services/drag.service';
 @Component({
@@ -14,6 +15,19 @@ export class ChesscellComponent implements OnInit {
     this.value = this.cell.letter.charCodeAt(0) + this.cell.position.y;
   }
 
+  drop(event: CdkDragDrop<string[]>) {
+    console.log('container ' + event.container.element.nativeElement.tabIndex);
+    console.log('currrent index ' + event.currentIndex);
+    console.log('distance ' + event.distance);
+    console.log('item ' + event.item.element.nativeElement.className);
+    console.log(
+      'previous ' + event.previousContainer.element.nativeElement.tabIndex
+    );
+    console.log('----------------------------');
+    //moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
+  }
+
+  /*
   allowDrop(ev) {
     ev.preventDefault();
   }
@@ -25,5 +39,5 @@ export class ChesscellComponent implements OnInit {
 
   drop(ev) {
     ev.preventDefault();
-  }
+  } */
 }

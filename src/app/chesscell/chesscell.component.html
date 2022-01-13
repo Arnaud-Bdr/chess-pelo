@@ -1,4 +1,9 @@
-<div id="cell" [ngClass]="value % 2 == 0 ? 'black' : 'white'">
+<div
+  id="cell"
+  [ngClass]="value % 2 == 0 ? 'black' : 'white'"
+
+  [tabindex]="value"
+>
   <div
     class="piece"
     [class]="cell.piece"

@@ -1,3 +1,4 @@
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { DragService } from '../services/drag.service';
 import { GameService } from '../services/game.service';
@@ -25,10 +26,20 @@ export class ChessboardComponent implements OnInit {
     this.gifs = this.gifService.getGifs();
   }
 
+  drop(event: CdkDragDrop<string[]>) {
+    console.log('container ' + event.container.id);
+    console.log('currrent index ' + event.currentIndex);
+    console.log('distance ' + event.distance);
+    console.log('item ' + event.item.element.nativeElement.className);
+    console.log('previous ' + event.previousIndex);
+    console.log('----------------------------');
+    //moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
+  }
+
   allowDrop(ev) {
     ev.preventDefault();
   }
-
+  /*
   drop(ev) {
     ev.preventDefault();
     var id = ev.dataTransfer.getData('id');
@@ -41,12 +52,10 @@ export class ChessboardComponent implements OnInit {
       }
       ev.target.id = id;
     }
-  }
+  } */
 
   resetAndShowGif() {
-    this.timeout != null
-    ? clearTimeout(this.timeout)
-    : null;
+    this.timeout != null ? clearTimeout(this.timeout) : null;
     this.gifContainer != null
       ? (this.gifContainer.style.display = 'none')
       : null;
