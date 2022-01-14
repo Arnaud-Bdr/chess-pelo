@@ -1,12 +1,11 @@
 import { Subject } from 'rxjs';
 
 export class GameService {
-  chessBoard = [];
-  width: number = 8;
-  height: number = 8;
-  colLettersArray: string[] = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
-  chessBoardSubject = new Subject<any[]>();
-  chessBoardPieces = [
+  private chessBoard = [];
+  private width: number = 8;
+  private height: number = 8;
+  private colLettersArray: string[] = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+  private chessBoardPieces = [
     ['br', 'bn', 'bb', 'bq', 'bk', 'bb', 'bn', 'br'],
     ['bp', 'bp', 'bp', 'bp', 'bp', 'bp', 'bp', 'bp'],
     ['  ', '  ', '  ', '  ', '  ', '  ', '  ', '  '],
@@ -16,6 +15,8 @@ export class GameService {
     ['wp', 'wp', 'wp', 'wp', 'wp', 'wp', 'wp', 'wp'],
     ['wr', 'wn', 'wb', 'wq', 'wk', 'wb', 'wn', 'wr'],
   ];
+
+  chessBoardSubject = new Subject<any[]>();
 
   emitChessBoardSubject() {
     for (let j = 0; j < this.height; ++j) {
@@ -29,7 +30,7 @@ export class GameService {
         this.chessBoard[j].push(cell);
       }
     }
-    return this.chessBoard;
+    this.chessBoardSubject.next(this.chessBoard);
   }
 
   movePiece(ori, dst, pieceType) {
