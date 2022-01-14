@@ -19,6 +19,7 @@ export class GameService {
   chessBoardSubject = new Subject<any[]>();
 
   emitChessBoardSubject() {
+    this.chessBoard = [];
     for (let j = 0; j < this.height; ++j) {
       this.chessBoard.push([]);
       for (let i = 0; i < this.width; ++i) {
@@ -40,8 +41,8 @@ export class GameService {
     let chessColDst = this.colLettersArray.indexOf(dst.charAt(0));
     let chessRowDst = dst.charAt(1);
 
-    this.chessBoardPieces[chessColOri][chessRowOri] = '  ';
-    this.chessBoardPieces[chessColDst][chessRowDst] = pieceType;
+    this.chessBoardPieces[8 - chessRowOri][chessColOri] = '  ';
+    this.chessBoardPieces[8 - chessRowDst][chessColDst] = pieceType;
 
     console.log('ori : ' + chessColOri + ' ' + chessRowOri);
     console.log('dst : ' + chessColDst + ' ' + chessRowDst);
