@@ -17,6 +17,10 @@
   display: none;
 }
 
+.cdk-drag-preview {
+  opacity: 1;
+}
+
 img {
   object-fit: contain;
   width: inherit;
@@ -39,9 +43,6 @@ img {
   background-color: rgba(136, 173, 204, 0.3);
 }
 
-.cdk-drag-preview {
-  opacity: 1;
-}
 
 .piece {
   background-size: contain;
@@ -50,7 +51,7 @@ img {
   height: 100%;
 }
 
-.br, {
+.br {
   background-image: url('https://images.chesscomfiles.com/chess-themes/pieces/neo/150/br.png');
 }
 
