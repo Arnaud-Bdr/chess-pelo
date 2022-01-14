@@ -1,7 +1,9 @@
 <div
   id="cell"
   [ngClass]="value % 2 == 0 ? 'black' : 'white'"
-
+  cdkDropList
+  cdkDropListSortingDisabled
+  (cdkDropListDropped)="drop($event)"
   [tabindex]="value"
 >
   <div
