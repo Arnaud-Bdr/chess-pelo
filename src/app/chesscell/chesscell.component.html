@@ -1,5 +1,6 @@
 <div
-  id="cell"
+  class="cell"
+  [id]="cell.letter + cell.position.y"
   [ngClass]="value % 2 == 0 ? 'black' : 'white'"
   cdkDropList
   cdkDropListSortingDisabled
@@ -11,7 +12,5 @@
     [class]="cell.piece"
     cdkDrag
     [cdkDragDisabled]="cell.piece == '  '"
-  >
-    <!--p  draggable="true" (dragstart)="drag($event) id="cellText">{{ value }}</p -- >
-  </div>
+  ></div>
 </div>

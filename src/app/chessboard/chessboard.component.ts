@@ -26,34 +26,6 @@ export class ChessboardComponent implements OnInit {
     this.gifs = this.gifService.getGifs();
   }
 
-  drop(event: CdkDragDrop<string[]>) {
-    console.log('container ' + event.container.id);
-    console.log('currrent index ' + event.currentIndex);
-    console.log('distance ' + event.distance);
-    console.log('item ' + event.item.element.nativeElement.className);
-    console.log('previous ' + event.previousIndex);
-    console.log('----------------------------');
-    //moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
-  }
-
-  allowDrop(ev) {
-    ev.preventDefault();
-  }
-  /*
-  drop(ev) {
-    ev.preventDefault();
-    var id = ev.dataTransfer.getData('id');
-    this.ds.getDraggedElement().id = '';
-    if (ev.target.id == 'cell') {
-      ev.target.firstChild.id = id;
-    } else {
-      if (!ev.target.id.includes('p')) {
-        this.resetAndShowGif();
-      }
-      ev.target.id = id;
-    }
-  } */
-
   resetAndShowGif() {
     this.timeout != null ? clearTimeout(this.timeout) : null;
     this.gifContainer != null

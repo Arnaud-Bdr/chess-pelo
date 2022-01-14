@@ -16,13 +16,11 @@ export class ChesscellComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    console.log('container ' + event.container.element.nativeElement.tabIndex);
+    console.log('container ' + event.container.element.nativeElement.id);
     console.log('currrent index ' + event.currentIndex);
     console.log('distance ' + event.distance);
     console.log('item ' + event.item.element.nativeElement.className);
-    console.log(
-      'previous ' + event.previousContainer.element.nativeElement.tabIndex
-    );
+    console.log('previous ' + event.previousContainer.element.nativeElement.id);
     console.log('----------------------------');
     //moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
   }
