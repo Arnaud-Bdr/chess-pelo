@@ -1,5 +1,9 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { BackEndService } from './backend.service';
 
+@Injectable()
 export class GameService {
   private chessBoard = [];
   private width: number = 8;
@@ -18,6 +22,8 @@ export class GameService {
 
   chessBoardSubject = new Subject<any[]>();
   pieceTakenSubject = new Subject<any>();
+
+  constructor(private backendService: BackEndService) {}
 
   emitChessBoardSubject() {
     this.chessBoard = [];
@@ -39,7 +45,7 @@ export class GameService {
     this.pieceTakenSubject.next(pieceType);
   }
 
-  movePiece(ori, dst, pieceType) {
+  async movePiece(ori, dst, pieceType) {
     // Do nothing if ori == dst
     if (ori == dst) {
       return;
@@ -54,9 +60,12 @@ export class GameService {
     if (this.chessBoardPieces[8 - chessRowDst][chessColDst] != '') {
       this.emitPieceTaken(this.chessBoardPieces[8 - chessRowOri][chessColOri]);
     }
-    this.chessBoardPieces[8 - chessRowOri][chessColOri] = ' ';
+    this.chessBoardPieces[8 - chessRowOri][chessColOri] = '';
     this.chessBoardPieces[8 - chessRowDst][chessColDst] = pieceType;
 
     this.emitChessBoardSubject();
+
+    let s: any = await this.backendService.getInitBoardState();
+    console.log('S : ' + s.fen);
   }
 }

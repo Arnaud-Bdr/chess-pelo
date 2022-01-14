@@ -25,8 +25,7 @@ export class ChesscellComponent implements OnInit {
     let pieceValue = event.item.element.nativeElement.className
       .split(' ')
       .filter((c) => c.length == 2)[0];
-    console.log(pieceValue + ' from ' + cellOri + ' to ' + cellDst);
+    //console.log(pieceValue + ' from ' + cellOri + ' to ' + cellDst);
     this.gameService.movePiece(cellOri, cellDst, pieceValue);
-    //moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
   }
 }

@@ -9,11 +9,13 @@ import { GameService } from './services/game.service';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DragService } from './services/drag.service';
 import { GifService } from './services/gif.service';
+import { HttpClientModule } from '@angular/common/http';
+import { BackEndService } from './services/backend.service';
 
 @NgModule({
-  imports: [BrowserModule, FormsModule, DragDropModule],
+  imports: [BrowserModule, FormsModule, DragDropModule, HttpClientModule],
   declarations: [AppComponent, ChessboardComponent, ChesscellComponent],
   bootstrap: [AppComponent],
-  providers: [GameService, DragService, GifService],
+  providers: [BackEndService, GameService, DragService, GifService],
 })
 export class AppModule {}
