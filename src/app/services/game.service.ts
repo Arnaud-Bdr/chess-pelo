@@ -8,15 +8,16 @@ export class GameService {
   private chessBoardPieces = [
     ['br', 'bn', 'bb', 'bq', 'bk', 'bb', 'bn', 'br'],
     ['bp', 'bp', 'bp', 'bp', 'bp', 'bp', 'bp', 'bp'],
-    ['  ', '  ', '  ', '  ', '  ', '  ', '  ', '  '],
-    ['  ', '  ', '  ', '  ', '  ', '  ', '  ', '  '],
-    ['  ', '  ', '  ', '  ', '  ', '  ', '  ', '  '],
-    ['  ', '  ', '  ', '  ', '  ', '  ', '  ', '  '],
+    ['', '', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', '', ''],
+    ['', '', '', '', '', '', '', ''],
     ['wp', 'wp', 'wp', 'wp', 'wp', 'wp', 'wp', 'wp'],
     ['wr', 'wn', 'wb', 'wq', 'wk', 'wb', 'wn', 'wr'],
   ];
 
   chessBoardSubject = new Subject<any[]>();
+  pieceTakenSubject = new Subject<any>();
 
   emitChessBoardSubject() {
     this.chessBoard = [];
@@ -34,6 +35,10 @@ export class GameService {
     this.chessBoardSubject.next(this.chessBoard);
   }
 
+  emitPieceTaken(pieceType) {
+    this.pieceTakenSubject.next(pieceType);
+  }
+
   movePiece(ori, dst, pieceType) {
     let chessColOri = this.colLettersArray.indexOf(ori.charAt(0));
     let chessRowOri = ori.charAt(1);
@@ -41,11 +46,12 @@ export class GameService {
     let chessColDst = this.colLettersArray.indexOf(dst.charAt(0));
     let chessRowDst = dst.charAt(1);
 
+    if (this.chessBoardPieces[8 - chessRowDst][chessColDst] != '') {
+      this.emitPieceTaken(this.chessBoardPieces[8 - chessRowOri][chessColOri]);
+    }
     this.chessBoardPieces[8 - chessRowOri][chessColOri] = '  ';
     this.chessBoardPieces[8 - chessRowDst][chessColDst] = pieceType;
 
-    console.log('ori : ' + chessColOri + ' ' + chessRowOri);
-    console.log('dst : ' + chessColDst + ' ' + chessRowDst);
     this.emitChessBoardSubject();
   }
 }

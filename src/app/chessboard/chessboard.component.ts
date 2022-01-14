@@ -26,6 +26,7 @@ export class ChessboardComponent implements OnInit {
       (chessboard) => (this.chessBoard = chessboard)
     );
     this.gs.emitChessBoardSubject();
+    this.gs.pieceTakenSubject.subscribe((piece) => this.resetAndShowGif());
     this.gifs = this.gifService.getGifs();
   }
 
