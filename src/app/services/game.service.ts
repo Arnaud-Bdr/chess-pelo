@@ -40,6 +40,11 @@ export class GameService {
   }
 
   movePiece(ori, dst, pieceType) {
+    // Do nothing if ori == dst
+    if (ori == dst) {
+      return;
+    }
+
     let chessColOri = this.colLettersArray.indexOf(ori.charAt(0));
     let chessRowOri = ori.charAt(1);
 
@@ -49,7 +54,7 @@ export class GameService {
     if (this.chessBoardPieces[8 - chessRowDst][chessColDst] != '') {
       this.emitPieceTaken(this.chessBoardPieces[8 - chessRowOri][chessColOri]);
     }
-    this.chessBoardPieces[8 - chessRowOri][chessColOri] = '  ';
+    this.chessBoardPieces[8 - chessRowOri][chessColOri] = ' ';
     this.chessBoardPieces[8 - chessRowDst][chessColDst] = pieceType;
 
     this.emitChessBoardSubject();
