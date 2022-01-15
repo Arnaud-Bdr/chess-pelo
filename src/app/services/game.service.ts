@@ -59,22 +59,20 @@ export class GameService {
     let chessColDst = this.colLettersArray.indexOf(dst.charAt(0));
     let chessRowDst = dst.charAt(1);
 
-    if (this.chessboardPieces[8 - chessRowDst][chessColDst] != '') {
-      this.emitPieceTaken(this.chessboardPieces[8 - chessRowOri][chessColOri]);
-    }
+    let pieceTaken = this.chessboardPieces[8 - chessRowDst][chessColDst] != '';
     this.chessboardPieces[8 - chessRowOri][chessColOri] = '';
     this.chessboardPieces[8 - chessRowDst][chessColDst] = pieceType;
     this.emitchessboardSubject();
-
     let gameStatus = await this.backendService.sendMove(this.fen, ori + dst);
-    this.updateGame(gameStatus);
+    this.updateGame(gameStatus, pieceTaken);
   }
 
-  updateGame(gameStatus) {
+  updateGame(gameStatus, pieceTaken) {
     if (gameStatus != null) {
       this.fen = gameStatus.fen;
       let fenChessboard = gameStatus.fen.split(' ')[0];
       this.parseFenChessboardToArray(fenChessboard);
+      if (pieceTaken) this.emitPieceTaken(null);
     } else {
       this.parseFenChessboardToArray(this.fen);
     }
@@ -83,7 +81,7 @@ export class GameService {
 
   async setChessboardToInitialPosition() {
     let gameStatus = await this.backendService.getInitBoardState();
-    this.updateGame(gameStatus);
+    this.updateGame(gameStatus, false);
   }
 
   parseFenChessboardToArray(fenChessBoard) {
