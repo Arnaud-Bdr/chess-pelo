@@ -76,29 +76,28 @@ export class GameService {
 
   parseFenChessboardToArray(fenChessBoard) {
     this.chessboardPieces = [];
-    let rowsNumber = 0;
+    this.chessboardPieces.push([]);
+    let rowsNumber = 1;
     let charIndex = 0;
     while (charIndex < fenChessBoard.length) {
-      this.chessboardPieces.push([]);
-      ++rowsNumber;
-      console.log('cc' + charIndex);
+      console.log('cc ' + charIndex);
       let fenComponent = fenChessBoard.charAt(charIndex);
-      while (fenComponent != '/') {
-        // If not a number it's a piece
-        if (isNaN(fenComponent)) {
-          this.chessboardPieces[rowsNumber - 1].push(fenComponent);
-          // If a number, it's defined number of consecutive blank
-        } else {
-          let blank = 0;
-          while (blank < fenComponent) {
-            this.chessboardPieces[rowsNumber - 1].push('');
-            ++blank;
-          }
+      if (fenComponent == '/') {
+        this.chessboardPieces.push([]);
+        ++rowsNumber;
+        // If not number, it's a piece
+      } else if (isNaN(fenComponent)) {
+        this.chessboardPieces[rowsNumber - 1].push(fenComponent);
+        // If a number, it's defined number of consecutive blank
+      } else {
+        let blank = 0;
+        while (blank < fenComponent) {
+          this.chessboardPieces[rowsNumber - 1].push('');
+          ++blank;
         }
-        ++charIndex;
-        fenComponent = fenChessBoard.charAt();
       }
       ++charIndex;
     }
+    console.log('finito');
   }
 }
