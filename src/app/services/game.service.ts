@@ -5,40 +5,41 @@ import { BackEndService } from './backend.service';
 
 @Injectable()
 export class GameService {
-  private chessBoard = [];
+  private chessboard = [];
   private width: number = 8;
   private height: number = 8;
   private colLettersArray: string[] = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
-  private chessBoardPieces = [
-    ['br', 'bn', 'bb', 'bq', 'bk', 'bb', 'bn', 'br'],
-    ['bp', 'bp', 'bp', 'bp', 'bp', 'bp', 'bp', 'bp'],
+  private chessboardPieces = [];
+  /*[
+    ['r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'],
+    ['p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'],
     ['', '', '', '', '', '', '', ''],
     ['', '', '', '', '', '', '', ''],
     ['', '', '', '', '', '', '', ''],
     ['', '', '', '', '', '', '', ''],
-    ['wp', 'wp', 'wp', 'wp', 'wp', 'wp', 'wp', 'wp'],
-    ['wr', 'wn', 'wb', 'wq', 'wk', 'wb', 'wn', 'wr'],
-  ];
+    ['P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'],
+    ['R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'],
+  ]; */
 
-  chessBoardSubject = new Subject<any[]>();
+  chessboardSubject = new Subject<any[]>();
   pieceTakenSubject = new Subject<any>();
 
   constructor(private backendService: BackEndService) {}
 
-  emitChessBoardSubject() {
-    this.chessBoard = [];
+  emitchessboardSubject() {
+    this.chessboard = [];
     for (let j = 0; j < this.height; ++j) {
-      this.chessBoard.push([]);
+      this.chessboard.push([]);
       for (let i = 0; i < this.width; ++i) {
         var cell = {
           letter: this.colLettersArray[i],
           position: { y: 8 - j, x: i },
-          piece: this.chessBoardPieces[j][i],
+          piece: this.chessboardPieces[j][i],
         };
-        this.chessBoard[j].push(cell);
+        this.chessboard[j].push(cell);
       }
     }
-    this.chessBoardSubject.next(this.chessBoard);
+    this.chessboardSubject.next(this.chessboard);
   }
 
   emitPieceTaken(pieceType) {
@@ -57,15 +58,47 @@ export class GameService {
     let chessColDst = this.colLettersArray.indexOf(dst.charAt(0));
     let chessRowDst = dst.charAt(1);
 
-    if (this.chessBoardPieces[8 - chessRowDst][chessColDst] != '') {
-      this.emitPieceTaken(this.chessBoardPieces[8 - chessRowOri][chessColOri]);
+    if (this.chessboardPieces[8 - chessRowDst][chessColDst] != '') {
+      this.emitPieceTaken(this.chessboardPieces[8 - chessRowOri][chessColOri]);
     }
-    this.chessBoardPieces[8 - chessRowOri][chessColOri] = '';
-    this.chessBoardPieces[8 - chessRowDst][chessColDst] = pieceType;
+    this.chessboardPieces[8 - chessRowOri][chessColOri] = '';
+    this.chessboardPieces[8 - chessRowDst][chessColDst] = pieceType;
 
-    this.emitChessBoardSubject();
+    this.emitchessboardSubject();
+  }
 
-    let s: any = await this.backendService.getInitBoardState();
-    console.log('S : ' + s.fen);
+  async setChessboardToInitialPosition() {
+    let gameStatus = await this.backendService.getInitBoardState();
+    let fenchessboard = gameStatus.fen.split(' ')[0];
+    this.parseFenChessboardToArray(fenchessboard);
+    this.emitchessboardSubject();
+  }
+
+  parseFenChessboardToArray(fenChessBoard) {
+    this.chessboardPieces = [];
+    let rowsNumber = 0;
+    let charIndex = 0;
+    while (charIndex < fenChessBoard.length) {
+      this.chessboardPieces.push([]);
+      ++rowsNumber;
+      console.log('cc' + charIndex);
+      let fenComponent = fenChessBoard.charAt(charIndex);
+      while (fenComponent != '/') {
+        // If not a number it's a piece
+        if (isNaN(fenComponent)) {
+          this.chessboardPieces[rowsNumber - 1].push(fenComponent);
+          // If a number, it's defined number of consecutive blank
+        } else {
+          let blank = 0;
+          while (blank < fenComponent) {
+            this.chessboardPieces[rowsNumber - 1].push('');
+            ++blank;
+          }
+        }
+        ++charIndex;
+        fenComponent = fenChessBoard.charAt();
+      }
+      ++charIndex;
+    }
   }
 }

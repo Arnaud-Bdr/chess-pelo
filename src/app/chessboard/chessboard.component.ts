@@ -22,10 +22,10 @@ export class ChessboardComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.gs.chessBoardSubject.subscribe(
+    this.gs.chessboardSubject.subscribe(
       (chessboard) => (this.chessBoard = chessboard)
     );
-    this.gs.emitChessBoardSubject();
+    this.gs.setChessboardToInitialPosition();
     this.gs.pieceTakenSubject.subscribe((piece) => this.resetAndShowGif());
     this.gifs = this.gifService.getGifs();
   }

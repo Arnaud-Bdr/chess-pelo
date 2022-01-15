@@ -3,25 +3,28 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class BackEndService {
-
-  rootUrl : string = "https://fast-citadel-36391.herokuapp.com/game?"
+  rootUrl: string = 'https://fast-citadel-36391.herokuapp.com/game?';
   constructor(private httpClient: HttpClient) {}
 
-  async getInitBoardState(){
+  async getInitBoardState() {
     let answer;
-    await this.httpClient.get<any>(this.rootUrl + "fen=&move=&format=json").toPromise().then((ans) => {answer = ans}).catch((error) => {
-      console.log('Erreur ! : ' + error);
-    })
-    
+    await this.httpClient
+      .get<any>(this.rootUrl + 'fen=&move=&format=json')
+      .toPromise()
+      .then((ans) => {
+        answer = ans;
+      })
+      .catch((error) => {
+        console.log('Erreur ! : ' + error);
+      });
+
     /*.subscribe(
       (ans) => {answer = ans},
       (error) => {
         console.log('Erreur ! : ' + error);
       }
     );*/
-    console.log(typeof(answer))
-    console.log(answer.fen)
+    console.log(answer);
     return answer;
   }
-
 }
