@@ -67,12 +67,24 @@ export class GameService {
     this.updateGame(gameStatus, pieceTaken);
   }
 
-  updateGame(gameStatus, pieceTaken) {
+  async updateGameIA(gameStatus) {
+    console.log('best move' + gameStatus.turn.bestMove);
+    let newGameStatus = await this.backendService.sendMove(
+      this.fen,
+      gameStatus.turn.bestMove
+    );
+    this.fen = newGameStatus.fen;
+    this.parseFenChessboardToArray(newGameStatus.fen.split(' ')[0]);
+    this.emitchessboardSubject();
+  }
+
+  async updateGame(gameStatus, pieceTaken) {
     if (gameStatus != null) {
       this.fen = gameStatus.fen;
       let fenChessboard = gameStatus.fen.split(' ')[0];
       this.parseFenChessboardToArray(fenChessboard);
-      if (pieceTaken) this.emitPieceTaken(null);
+      if (gameStatus.turn.color == 'black') await this.updateGameIA(gameStatus);
+      //if (pieceTaken) this.emitPieceTaken(null);
     } else {
       this.parseFenChessboardToArray(this.fen);
     }
