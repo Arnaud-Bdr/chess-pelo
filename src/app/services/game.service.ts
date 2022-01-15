@@ -80,7 +80,6 @@ export class GameService {
     let rowsNumber = 1;
     let charIndex = 0;
     while (charIndex < fenChessBoard.length) {
-      console.log('cc ' + charIndex);
       let fenComponent = fenChessBoard.charAt(charIndex);
       if (fenComponent == '/') {
         this.chessboardPieces.push([]);
@@ -98,6 +97,5 @@ export class GameService {
       }
       ++charIndex;
     }
-    console.log('finito');
   }
 }
