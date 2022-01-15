@@ -19,7 +19,6 @@ img {
 
 .cdkDragHandle {
   position: absolute;
-
   width: 50%;
   height: 65%;
   top: 20%;
@@ -67,7 +66,7 @@ img {
 }
 
 .k {
-  background-image: url('https://media-exp1.licdn.com/dms/image/C4D03AQGRkawDM2ZIOA/profile-displayphoto-shrink_200_200/0/1607681009069?e=1647475200&v=beta&t=ng1NkJARgIGzQQLVKHd-MMK8mPjEpPl134w1c32zWcc');
+  background-image: url('https://github.com/Arnaud-Bdr/chess-pelo/blob/master/src/app/assets/pieces/Jo_bk.jpg?raw=true');
 }
 
 .p {
@@ -87,7 +86,7 @@ img {
 }
 
 .K {
-  background: url('https://yt3.ggpht.com/uEnpLIKSL4Urddqo80WRke2DC84nR_g_otUU4MWNKQMdn79UKXDytCFc-3scQ1cymQ-r2Ne8ZA=s88-c-k-c0x00ffffff-no-rj');
+  background-image: url('https://github.com/Arnaud-Bdr/chess-pelo/blob/master/src/app/assets/pieces/Jo_wk.jpg?raw=true');
 }
 
 .P {
