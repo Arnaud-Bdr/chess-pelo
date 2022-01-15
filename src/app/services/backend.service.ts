@@ -27,4 +27,20 @@ export class BackEndService {
     console.log(answer);
     return answer;
   }
+
+  async sendMove(fen, move) {
+    let answer;
+    await this.httpClient
+      .get<any>(this.rootUrl + 'fen=' + fen + '&move=' + move + '&format=json')
+      .toPromise()
+      .then((ans) => {
+        answer = ans;
+      })
+      .catch((error) => {
+        console.log('Erreur ! : ' + error);
+      });
+
+    console.log(answer);
+    return answer;
+  }
 }

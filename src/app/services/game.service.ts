@@ -9,6 +9,7 @@ export class GameService {
   private width: number = 8;
   private height: number = 8;
   private colLettersArray: string[] = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+  private fen = '';
   private chessboardPieces = [];
   /*[
     ['r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'],
@@ -63,15 +64,26 @@ export class GameService {
     }
     this.chessboardPieces[8 - chessRowOri][chessColOri] = '';
     this.chessboardPieces[8 - chessRowDst][chessColDst] = pieceType;
+    this.emitchessboardSubject();
 
+    let gameStatus = await this.backendService.sendMove(this.fen, ori + dst);
+    this.updateGame(gameStatus);
+  }
+
+  updateGame(gameStatus) {
+    if (gameStatus != null) {
+      this.fen = gameStatus.fen;
+      let fenChessboard = gameStatus.fen.split(' ')[0];
+      this.parseFenChessboardToArray(fenChessboard);
+    } else {
+      this.parseFenChessboardToArray(this.fen);
+    }
     this.emitchessboardSubject();
   }
 
   async setChessboardToInitialPosition() {
     let gameStatus = await this.backendService.getInitBoardState();
-    let fenchessboard = gameStatus.fen.split(' ')[0];
-    this.parseFenChessboardToArray(fenchessboard);
-    this.emitchessboardSubject();
+    this.updateGame(gameStatus);
   }
 
   parseFenChessboardToArray(fenChessBoard) {
