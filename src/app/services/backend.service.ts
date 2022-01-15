@@ -17,7 +17,6 @@ export class BackEndService {
       .catch((error) => {
         console.log('Erreur ! : ' + error);
       });
-    console.log(answer);
     return answer;
   }
 

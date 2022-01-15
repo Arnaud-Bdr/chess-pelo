@@ -48,7 +48,7 @@ export class GameService {
   }
 
   async movePiece(ori, dst, pieceType) {
-    // Do nothing if ori == dst
+    // Do nothing if ori == dst 
     if (ori == dst) {
       return;
     }
@@ -68,7 +68,6 @@ export class GameService {
   }
 
   async updateGameIA(gameStatus) {
-    console.log('best move' + gameStatus.turn.bestMove);
     let newGameStatus = await this.backendService.sendMove(
       this.fen,
       gameStatus.turn.bestMove
