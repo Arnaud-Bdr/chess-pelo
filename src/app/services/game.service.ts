@@ -70,7 +70,7 @@ export class GameService {
   async updateGameIA(gameStatus) {
     let newGameStatus = await this.backendService.sendMove(
       this.fen,
-      gameStatus.bestMove
+      gameStatus.turn.bestMove
     );
     this.fen = newGameStatus.fen;
     this.parseFenChessboardToArray(newGameStatus.fen.split(' ')[0]);
