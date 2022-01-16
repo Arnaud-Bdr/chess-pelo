@@ -41,8 +41,6 @@ img {
   background-color: rgba(136, 173, 204, 0.3);
 }
 
-
-
 .piece {
   background-size: contain;
   background-repeat: no-repeat;
@@ -51,10 +49,13 @@ img {
   position: relative;
 }
 
-.r, .n, .b, .p, .q, .k {
-  box-shadow:inset 0px 0px 0px 2px black;
+.r,
+.n,
+.b,
+.p,
+.q,
+.k {
 }
-
 
 .r {
   background-image: url('https://images.chesscomfiles.com/chess-themes/pieces/neo/150/br.png');
@@ -73,8 +74,7 @@ img {
 }
 
 .k {
-  background-image: url('https://github.com/Arnaud-Bdr/chess-pelo/blob/master/src/app/assets/pieces/Jo.png?raw=true');
-
+  background-image: url('https://github.com/Arnaud-Bdr/chess-pelo/blob/master/src/app/assets/pieces/Jo_bk.png?raw=true');
 }
 
 .p {
@@ -94,7 +94,7 @@ img {
 }
 
 .K {
-  background-image: url('https://github.com/Arnaud-Bdr/chess-pelo/blob/master/src/app/assets/pieces/Jo_wk.jpg?raw=true');
+  background-image: url('https://github.com/Arnaud-Bdr/chess-pelo/blob/master/src/app/assets/pieces/Jo_wk.png?raw=true');
 }
 
 .P {
