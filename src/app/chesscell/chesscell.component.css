@@ -70,7 +70,7 @@ img {
 }
 
 .q {
-  background-image: url("https://github.com/Arnaud-Bdr/chess-pelo/blob/master/src/app/assets/pieces/andrea_botez_bq.png?raw=true");
+  background-image: url('https://github.com/Arnaud-Bdr/chess-pelo/blob/master/src/app/assets/pieces/andrea_botez_bq.png?raw=true');
 }
 
 .k {
@@ -90,7 +90,7 @@ img {
 }
 
 .Q {
-  background-image: url("https://github.com/Arnaud-Bdr/chess-pelo/blob/master/src/app/assets/pieces/andrea_botez_q.png?raw=true");
+  background-image: url('https://github.com/Arnaud-Bdr/chess-pelo/blob/master/src/app/assets/pieces/andrea_botez_wq.png?raw=true');
 }
 
 .K {

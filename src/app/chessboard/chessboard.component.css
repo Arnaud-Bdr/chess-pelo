@@ -10,12 +10,11 @@
   border: rgba(255, 255, 255, 0.8) solid;
   border-radius: 1%;
   position: relative;
-  animation: 1.5s cubic-bezier(0.4, 0.81, 0.62, 1.18) 0s 1 expandsChessBoard
-    forwards;
+  animation: 1.5s cubic-bezier(0.4, 0.81, 0.62, 1.18) 0s 1 expandsScale forwards;
   transform-origin: initial;
 }
 
-@keyframes expandsChessBoard {
+@keyframes expandsScale {
   0% {
     transform: scale(0.4);
   }
@@ -54,4 +53,37 @@
   100% {
     opacity: 0;
   }
+}
+
+#btnContainer {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+button {
+  background-color: rgba(255, 255, 255, 0.4);
+  background-repeat: no-repeat;
+  border: 2px solid white;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  display: inline-block;
+  color: white;
+  border-radius: 5px;
+  font-size: large;
+  animation: 2s ease 0s 1 expandsScale forwards;
+  height: 35px;
+  text-align: center;
+}
+
+#twoPlayersBtn {
+  display: inline-block;
+  margin: 5px;
+}
+
+#iaBtn {
+  display: inline-block;
+  margin: 5px;
 }
