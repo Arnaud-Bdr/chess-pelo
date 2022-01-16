@@ -84,7 +84,7 @@ export class GameService {
       this.parseFenChessboardToArray(fenChessboard);
       if (pieceTaken != '') this.emitPieceTaken(pieceTaken);
       if (gameStatus.turn.color == 'black') {
-        await setTimeout(() => athis.updateGameIA(gameStatus), 1000);
+        await setTimeout(() => this.updateGameIA(gameStatus), 1000);
       }
     } else {
       this.parseFenChessboardToArray(this.fen);
