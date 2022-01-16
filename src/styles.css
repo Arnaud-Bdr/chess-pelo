@@ -5,11 +5,10 @@ html {
 
 body {
   background: radial-gradient(circle at center, #296da5, #385b77);
-  /* background-color: rgba(72, 135, 139, 0.836); */
 }
 
 p,
 h1,
 h2 {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Tahoma, sans-serif;
 }
