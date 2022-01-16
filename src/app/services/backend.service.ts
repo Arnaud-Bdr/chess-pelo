@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class BackEndService {
-  rootUrl: string = 'https://fast-citadel-36391.herokuapp.com/game?';
+  rootUrl: string = 'https://chess-pelo-api.herokuapp.com/game?';
   constructor(private httpClient: HttpClient) {}
 
   async getInitBoardState() {
