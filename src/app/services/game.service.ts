@@ -70,7 +70,7 @@ export class GameService {
   async updateGameIA(gameStatus) {
     let newGameStatus = await this.backendService.sendMove(
       this.fen,
-      this.determineIAMove(gameStatus)
+      gameStatus.bestMove
     );
     this.fen = newGameStatus.fen;
     this.parseFenChessboardToArray(newGameStatus.fen.split(' ')[0]);
@@ -86,7 +86,7 @@ export class GameService {
       let legalMovesNumber = gameStatus.turn.legalMoves.length;
       let moveIndex = Math.floor(Math.floor(Math.random() * 4));
       moveIndex = Math.min(legalMovesNumber, moveIndex);
-      console.log("goodMove" + moveIndex)
+      console.log('goodMove' + moveIndex);
       return gameStatus.turn.legalMoves[moveIndex];
     }
     // Do bad move
@@ -95,7 +95,7 @@ export class GameService {
       Math.floor((Math.random() * legalMovesNumber) / 2) + legalMovesNumber / 2
     );
     moveIndex = Math.min(legalMovesNumber, moveIndex);
-    console.log("badmove" + moveIndex)
+    console.log('badmove' + moveIndex);
     return gameStatus.turn.legalMoves[moveIndex];
   }
 
