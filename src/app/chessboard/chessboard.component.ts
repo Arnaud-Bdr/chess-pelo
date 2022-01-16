@@ -26,8 +26,14 @@ export class ChessboardComponent implements OnInit {
       (chessboard) => (this.chessBoard = chessboard)
     );
     this.gs.setChessboardToInitialPosition();
-    this.gs.pieceTakenSubject.subscribe((piece) => this.resetAndShowGif());
+    this.gs.pieceTakenSubject.subscribe((piece) => this.onPieceTaken(piece));
     this.gifs = this.gifService.getGifs();
+  }
+
+  onPieceTaken(piece) {
+    if (piece == 'b' || piece == 'B') {
+      this.resetAndShowGif();
+    }
   }
 
   resetAndShowGif() {

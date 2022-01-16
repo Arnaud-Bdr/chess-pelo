@@ -48,7 +48,7 @@ export class GameService {
   }
 
   async movePiece(ori, dst, pieceType) {
-    // Do nothing if ori == dst 
+    // Do nothing if ori == dst
     if (ori == dst) {
       return;
     }
@@ -59,7 +59,7 @@ export class GameService {
     let chessColDst = this.colLettersArray.indexOf(dst.charAt(0));
     let chessRowDst = dst.charAt(1);
 
-    let pieceTaken = this.chessboardPieces[8 - chessRowDst][chessColDst] != '';
+    let pieceTaken = this.chessboardPieces[8 - chessRowDst][chessColDst];
     this.chessboardPieces[8 - chessRowOri][chessColOri] = '';
     this.chessboardPieces[8 - chessRowDst][chessColDst] = pieceType;
     this.emitchessboardSubject();
@@ -70,11 +70,33 @@ export class GameService {
   async updateGameIA(gameStatus) {
     let newGameStatus = await this.backendService.sendMove(
       this.fen,
-      gameStatus.turn.bestMove
+      this.determineIAMove(gameStatus)
     );
     this.fen = newGameStatus.fen;
     this.parseFenChessboardToArray(newGameStatus.fen.split(' ')[0]);
     this.emitchessboardSubject();
+  }
+
+  determineIAMove(gameStatus) {
+    let randomVal = Math.floor(Math.random() * 100);
+    if (randomVal > 50) {
+      return gameStatus.turn.bestMove;
+      // Do good move
+    } else if (randomVal > 10) {
+      let legalMovesNumber = gameStatus.turn.legalMoves.length;
+      let moveIndex = Math.floor(
+        Math.floor((Math.random() * legalMovesNumber) / 8)
+      );
+      moveIndex = Math.min(legalMovesNumber, moveIndex);
+      return gameStatus.turn.legalMoves[moveIndex];
+    }
+    // Do bad move
+    let legalMovesNumber = gameStatus.turn.legalMoves.length;
+    let moveIndex = Math.floor(
+      Math.floor((Math.random() * legalMovesNumber) / 2) + legalMovesNumber / 2
+    );
+    moveIndex = Math.min(legalMovesNumber, moveIndex);
+    return gameStatus.turn.legalMoves[moveIndex];
   }
 
   async updateGame(gameStatus, pieceTaken) {
@@ -82,8 +104,8 @@ export class GameService {
       this.fen = gameStatus.fen;
       let fenChessboard = gameStatus.fen.split(' ')[0];
       this.parseFenChessboardToArray(fenChessboard);
+      if (pieceTaken != '') this.emitPieceTaken(pieceTaken);
       if (gameStatus.turn.color == 'black') await this.updateGameIA(gameStatus);
-      //if (pieceTaken) this.emitPieceTaken(null);
     } else {
       this.parseFenChessboardToArray(this.fen);
     }
@@ -92,7 +114,7 @@ export class GameService {
 
   async setChessboardToInitialPosition() {
     let gameStatus = await this.backendService.getInitBoardState();
-    this.updateGame(gameStatus, false);
+    this.updateGame(gameStatus, '');
   }
 
   parseFenChessboardToArray(fenChessBoard) {
