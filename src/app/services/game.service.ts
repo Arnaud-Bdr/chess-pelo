@@ -83,7 +83,9 @@ export class GameService {
       let fenChessboard = gameStatus.fen.split(' ')[0];
       this.parseFenChessboardToArray(fenChessboard);
       if (pieceTaken != '') this.emitPieceTaken(pieceTaken);
-      if (gameStatus.turn.color == 'black') await this.updateGameIA(gameStatus);
+      if (gameStatus.turn.color == 'black') {
+        await setTimeout(() => this.updateGameIA(gameStatus), 000);
+      }
     } else {
       this.parseFenChessboardToArray(this.fen);
     }
