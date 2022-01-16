@@ -77,28 +77,6 @@ export class GameService {
     this.emitchessboardSubject();
   }
 
-  determineIAMove(gameStatus) {
-    let randomVal = Math.floor(Math.random() * 100);
-    if (randomVal > 50) {
-      return gameStatus.turn.bestMove;
-      // Do good move
-    } else if (randomVal > 10) {
-      let legalMovesNumber = gameStatus.turn.legalMoves.length;
-      let moveIndex = Math.floor(Math.floor(Math.random() * 4));
-      moveIndex = Math.min(legalMovesNumber, moveIndex);
-      console.log('goodMove' + moveIndex);
-      return gameStatus.turn.legalMoves[moveIndex];
-    }
-    // Do bad move
-    let legalMovesNumber = gameStatus.turn.legalMoves.length;
-    let moveIndex = Math.floor(
-      Math.floor((Math.random() * legalMovesNumber) / 2) + legalMovesNumber / 2
-    );
-    moveIndex = Math.min(legalMovesNumber, moveIndex);
-    console.log('badmove' + moveIndex);
-    return gameStatus.turn.legalMoves[moveIndex];
-  }
-
   async updateGame(gameStatus, pieceTaken) {
     if (gameStatus != null) {
       this.fen = gameStatus.fen;
