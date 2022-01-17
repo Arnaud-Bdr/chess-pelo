@@ -26,15 +26,13 @@ export class ChessboardComponent implements OnInit {
       (chessboard) => (this.chessBoard = chessboard)
     );
     this.gs.setChessboardToInitialPosition();
-    this.gs.pieceTakenSubject.subscribe((piece) => this.onPieceTaken(piece));
+    this.gs.gameStatusSubject.subscribe((gameStatus) =>
+      this.onGameStatusChanged(gameStatus)
+    );
     this.gifs = this.gifService.getGifs();
   }
 
-  onPieceTaken(piece) {
-    if (piece == 'b' || piece == 'B') {
-      this.resetAndShowGif();
-    }
-  }
+  onGameStatusChanged(gameStatus) {}
 
   resetAndShowGif() {
     this.timeout != null ? clearTimeout(this.timeout) : null;
