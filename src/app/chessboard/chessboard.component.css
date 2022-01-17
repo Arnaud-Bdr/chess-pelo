@@ -10,7 +10,7 @@
   border: rgba(255, 255, 255, 0.8) solid;
   border-radius: 1%;
   position: relative;
-  animation: 1.5s cubic-bezier(0.4, 0.81, 0.62, 1.18) 0s 1 expandsScale forwards;
+  /*animation: 1.5s cubic-bezier(0.4, 0.81, 0.62, 1.18) 0s 1 expandsScale forwards;*/
   transform-origin: initial;
 }
 
@@ -72,8 +72,8 @@ button {
   display: inline-block;
   color: white;
   border-radius: 5px;
-  font-size: ;
-  animation: 2s ease 0s 1 expandsScale forwards;
+  font-size: medium;
+  /*animation: 2s ease 0s 1 expandsScale forwards;*/
   height: 35px;
   text-align: center;
 }
