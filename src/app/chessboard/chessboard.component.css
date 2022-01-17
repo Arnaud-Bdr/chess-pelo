@@ -72,7 +72,7 @@ button {
   display: inline-block;
   color: white;
   border-radius: 5px;
-  font-size: large;
+  font-size: ;
   animation: 2s ease 0s 1 expandsScale forwards;
   height: 35px;
   text-align: center;
