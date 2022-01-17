@@ -9,8 +9,8 @@ export class GameService {
   private width: number = 8;
   private height: number = 8;
   private colLettersArray: string[] = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
-  private fen = '';
   private chessboardPieces = [];
+  private gameStatus: any;
   /*[
     ['r', 'n', 'b', 'q', 'k', 'b', 'n', 'r'],
     ['p', 'p', 'p', 'p', 'p', 'p', 'p', 'p'],
@@ -63,41 +63,43 @@ export class GameService {
     this.chessboardPieces[8 - chessRowOri][chessColOri] = '';
     this.chessboardPieces[8 - chessRowDst][chessColDst] = pieceType;
     this.emitchessboardSubject();
-    let gameStatus = await this.backendService.sendMove(this.fen, ori + dst);
-    this.updateGame(gameStatus, pieceTaken);
+    let newGameStatus = await this.backendService.sendMove(
+      this.gameStatus.fe,
+      ori + dst
+    );
+    this.updateGameStatus(newGameStatus, pieceTaken);
   }
 
   async updateGameIA(gameStatus) {
-    let newGameStatus = await this.backendService.sendMove(
-      this.fen,
+    this.gameStatus = await this.backendService.sendMove(
+      this.gameStatus,
       gameStatus.turn.bestMove
     );
-    this.fen = newGameStatus.fen;
-    this.parseFenChessboardToArray(newGameStatus.fen.split(' ')[0]);
+    this.parseFenToChessoboard(this.gameStatus.fen);
     this.emitchessboardSubject();
   }
 
-  async updateGame(gameStatus, pieceTaken) {
-    if (gameStatus != null) {
-      this.fen = gameStatus.fen;
-      let fenChessboard = gameStatus.fen.split(' ')[0];
-      this.parseFenChessboardToArray(fenChessboard);
+  async updateGameStatus(newGameStatus, pieceTaken) {
+    if (newGameStatus != null) {
+      this.gameStatus = newGameStatus;
+      this.parseFenToChessoboard(this.gameStatus.fen);
       if (pieceTaken != '') this.emitPieceTaken(pieceTaken);
-      if (gameStatus.turn.color == 'black') {
-        await setTimeout(() => this.updateGameIA(gameStatus), 1000);
+      if (this.gameStatus.turn.color == 'black') {
+        await setTimeout(() => this.updateGameIA(this.gameStatus), 1000);
       }
     } else {
-      this.parseFenChessboardToArray(this.fen);
+      this.parseFenToChessoboard(this.gameStatus.fen);
     }
     this.emitchessboardSubject();
   }
 
   async setChessboardToInitialPosition() {
     let gameStatus = await this.backendService.getInitBoardState();
-    this.updateGame(gameStatus, '');
+    this.updateGameStatus(gameStatus, '');
   }
 
-  parseFenChessboardToArray(fenChessBoard) {
+  parseFenToChessoboard(fen) {
+    let fenChessBoard = fen.split(' ')[0];
     this.chessboardPieces = [];
     this.chessboardPieces.push([]);
     let rowIndex = 0;

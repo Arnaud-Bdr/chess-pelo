@@ -20,10 +20,17 @@ export class BackEndService {
     return answer;
   }
 
-  async sendMove(fen, move) {
+  async sendMove(gameStatus, move) {
     let answer;
     await this.httpClient
-      .get<any>(this.rootUrl + 'fen=' + fen + '&move=' + move + '&format=json')
+      .get<any>(
+        this.rootUrl +
+          'fen=' +
+          gameStatus.fen +
+          '&move=' +
+          move +
+          '&format=json'
+      )
       .toPromise()
       .then((ans) => {
         answer = ans;
