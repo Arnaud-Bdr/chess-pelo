@@ -10,6 +10,8 @@ import { GameService } from '../services/game.service';
 export class ChesscellComponent implements OnInit {
   @Input() cell: any;
   value: number;
+  moved: boolean = false;
+  isBlack: boolean = false;
 
   constructor(
     private dragService: DragService,
@@ -17,6 +19,7 @@ export class ChesscellComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.value = this.cell.letter.charCodeAt(0) + this.cell.position.y;
+    this.isBlack = this.value%2 == 0;
   }
 
   drop(event: CdkDragDrop<string[]>) {

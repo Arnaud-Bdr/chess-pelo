@@ -51,6 +51,9 @@ export class GameService {
       return;
     }
 
+    this.lastMoveOri = ori;
+    this.lastMoveDst = dst;
+
     let chessColOri = this.colLettersArray.indexOf(ori.charAt(0));
     let chessRowOri = ori.charAt(1);
 

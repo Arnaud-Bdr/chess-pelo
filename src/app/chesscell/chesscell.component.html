@@ -1,7 +1,7 @@
 <div
   class="cell"
   [id]="cell.letter + cell.position.y"
-  [ngClass]="value % 2 == 0 ? 'black' : 'white'"
+  [ngClass]="{ black: isBlack, white:  }"
   cdkDropList
   cdkDropListSortingDisabled
   (cdkDropListDropped)="drop($event)"

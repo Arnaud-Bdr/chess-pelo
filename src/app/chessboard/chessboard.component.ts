@@ -22,8 +22,8 @@ export class ChessboardComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.gs.chessboardSubject.subscribe(
-      (chessboardSubject) => (this.chessBoard = chessboardSubject.chessboard)
+    this.gs.chessboardSubject.subscribe((chessboardSubject) =>
+      this.onChessboardSubjectChanged(chessboardSubject)
     );
     this.gs.setChessboardToInitialPosition();
     this.gs.gameStatusSubject.subscribe((gameStatus) =>
@@ -33,6 +33,16 @@ export class ChessboardComponent implements OnInit {
   }
 
   onGameStatusChanged(gameStatus) {}
+
+  onChessboardSubjectChanged(chessboardSubject) {
+    this.chessBoard = chessboardSubject.chessboard;
+    if (chessboardSubject.lastMoveOri != '') {
+      let cellMoveOri = document.getElementById(chessboardSubject.lastMoveOri);
+      let cellMoveDst = document.getElementById(chessboardSubject.lastMoveDst);
+      cellMoveOri.style.border = '2px solid white';
+      cellMoveDst.classList.add('cellMove');
+    }
+  }
 
   resetAndShowGif() {
     this.timeout != null ? clearTimeout(this.timeout) : null;
