@@ -57,7 +57,7 @@ export class GameService {
     }
     let move = ori + dst;
 
-    // IF move is illegal do nothing
+    // IF move is illegal or it is not our do nothing
     if (
       !this.gameStatus.turn.legalMoves.includes(move) ||
       this.gameStatus.turn.color == 'black'
