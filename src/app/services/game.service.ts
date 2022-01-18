@@ -55,6 +55,12 @@ export class GameService {
     if (ori == dst) {
       return;
     }
+    let move = ori + dst;
+
+    // IF move is illegal do nothing
+    if (!this.gameStatus.turn.legalMoves.includes(move)) {
+      return;
+    }
 
     let chessColOri = this.colLettersArray.indexOf(ori.charAt(0));
     let chessRowOri = ori.charAt(1);
@@ -66,18 +72,14 @@ export class GameService {
     this.chessboardPieces[8 - chessRowOri][chessColOri] = '';
     this.chessboardPieces[8 - chessRowDst][chessColDst] = pieceType;
 
+    this.lastMoveOri = ori;
+    this.lastMoveDst = dst;
     // Emit for immediate move rendering before receveiving validation from from stockfish engine
     this.emitchessboardSubject();
     let newGameStatus = await this.backendService.sendMove(
       this.gameStatus,
-      ori + dst
+      move
     );
-
-    if (newGameStatus != null) {
-      this.lastMoveOri = ori;
-      this.lastMoveDst = dst;
-    }
-
     this.updateGameStatus(newGameStatus, pieceTaken);
   }
 
