@@ -53,7 +53,7 @@ export class GameService {
       pieceTaken: this.pieceTaken,
     };
     this.gameStatusSubject.next(gameStatusAugmented);
-    this.pieceTaken = fals
+    this.pieceTaken = false
   }
 
   async movePiece(ori, dst, pieceType) {
