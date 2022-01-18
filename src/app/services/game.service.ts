@@ -56,9 +56,6 @@ export class GameService {
       return;
     }
 
-    this.lastMoveOri = ori;
-    this.lastMoveDst = dst;
-
     let chessColOri = this.colLettersArray.indexOf(ori.charAt(0));
     let chessRowOri = ori.charAt(1);
 
@@ -75,14 +72,23 @@ export class GameService {
       this.gameStatus,
       ori + dst
     );
+
+    if (newGameStatus != null) {
+      this.lastMoveOri = ori;
+      this.lastMoveDst = dst;
+    }
+
     this.updateGameStatus(newGameStatus, pieceTaken);
   }
 
   async updateGameIA(gameStatus) {
+    this.lastMoveOri = gameStatus.turn.bestMove.substring(0, 2);
+    this.lastMoveDst = gameStatus.turn.bestMove.substring(2, 4);
     this.gameStatus = await this.backendService.sendMove(
       this.gameStatus,
       gameStatus.turn.bestMove
     );
+
     this.parseFenToChessoboard(this.gameStatus.fen);
     this.emitGameStatus();
     this.emitchessboardSubject();
