@@ -23,7 +23,7 @@ export class ChessboardComponent implements OnInit {
 
   ngOnInit() {
     this.gs.chessboardSubject.subscribe(
-      (chessboard) => (this.chessBoard = chessboard)
+      (chessboardSubject) => (this.chessBoard = chessboardSubject.chessboard)
     );
     this.gs.setChessboardToInitialPosition();
     this.gs.gameStatusSubject.subscribe((gameStatus) =>

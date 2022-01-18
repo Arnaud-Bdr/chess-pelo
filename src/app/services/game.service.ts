@@ -11,8 +11,9 @@ export class GameService {
   private colLettersArray: string[] = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
   private chessboardPieces = [];
   private gameStatus: any;
-
-  chessboardSubject = new Subject<any[]>();
+  private lastMoveOri: string = '';
+  private lastMoveDst: string = '';
+  chessboardSubject = new Subject<any>();
   gameStatusSubject = new Subject<any>();
 
   constructor(private backendService: BackEndService) {}
@@ -30,7 +31,14 @@ export class GameService {
         this.chessboard[j].push(cell);
       }
     }
-    this.chessboardSubject.next(this.chessboard);
+
+    let chessboardsubject = {
+      chessboard: this.chessboard,
+      lastMoveOri: this.lastMoveOri,
+      lastMoveDst: this.lastMoveDst,
+    };
+
+    this.chessboardSubject.next(chessboardsubject);
   }
 
   emitGameStatus() {
