@@ -23,10 +23,15 @@ export class GameService {
     for (let j = 0; j < this.height; ++j) {
       this.chessboard.push([]);
       for (let i = 0; i < this.width; ++i) {
+        let yPos = 8 - j;
+        let cellPos = this.colLettersArray[i] + yPos;
+        let cellMoved =
+          this.lastMoveOri == cellPos || this.lastMoveDst == cellPos;
         var cell = {
           letter: this.colLettersArray[i],
           position: { y: 8 - j, x: i },
           piece: this.chessboardPieces[j][i],
+          moved: cellMoved,
         };
         this.chessboard[j].push(cell);
       }

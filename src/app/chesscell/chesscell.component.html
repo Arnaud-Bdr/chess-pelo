@@ -1,7 +1,11 @@
 <div
   class="cell"
-  [id]="cell.letter + cell.position.y"
-  [ngClass]="{ black: isBlack, white:  }"
+  [id]="id"
+  [ngClass]="{
+    cellMove: moved,
+    black: isBlack && !moved,
+    white: !isBlack && !moved
+  }"
   cdkDropList
   cdkDropListSortingDisabled
   (cdkDropListDropped)="drop($event)"

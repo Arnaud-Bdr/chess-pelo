@@ -12,6 +12,7 @@ export class ChesscellComponent implements OnInit {
   value: number;
   moved: boolean = false;
   isBlack: boolean = false;
+  id: string;
 
   constructor(
     private dragService: DragService,
@@ -19,7 +20,12 @@ export class ChesscellComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.value = this.cell.letter.charCodeAt(0) + this.cell.position.y;
-    this.isBlack = this.value%2 == 0;
+    this.isBlack = this.value % 2 == 0;
+    this.id = this.cell.letter + this.cell.position.y;
+    this.moved = this.cell.moved;
+    if(this.moved){
+      console.log("cell moved :" + )
+    }
   }
 
   drop(event: CdkDragDrop<string[]>) {
@@ -28,6 +34,7 @@ export class ChesscellComponent implements OnInit {
     let pieceValue = event.item.element.nativeElement.className
       .split(' ')
       .filter((c) => c.length == 1)[0];
+
     //console.log(pieceValue + ' from ' + cellOri + ' to ' + cellDst);
     this.gameService.movePiece(cellOri, cellDst, pieceValue);
   }
