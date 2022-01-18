@@ -78,13 +78,14 @@ export class GameService {
     this.lastMoveOri = ori;
     this.lastMoveDst = dst;
     this.gameStatus.turn.color = 'black';
+    //if (pieceTaken != '') this.emitPieceTaken(pieceTaken);
     // Emit for immediate move rendering before receeiving validation from stockfish engine
     this.emitchessboardSubject();
     let newGameStatus = await this.backendService.sendMove(
       this.gameStatus,
       move
     );
-    this.updateGameStatus(newGameStatus, pieceTaken);
+    this.updateGameStatus(newGameStatus);
   }
 
   async updateGameIA(gameStatus) {
@@ -100,13 +101,13 @@ export class GameService {
     this.emitchessboardSubject();
   }
 
-  async updateGameStatus(newGameStatus, pieceTaken) {
+  async updateGameStatus(newGameStatus) {
     if (newGameStatus != null) {
       this.gameStatus = newGameStatus;
       this.parseFenToChessoboard(this.gameStatus.fen);
       this.emitGameStatus();
       this.emitchessboardSubject();
-      //if (pieceTaken != '') this.emitPieceTaken(pieceTaken);
+
       if (this.gameStatus.turn.color == 'black') {
         await setTimeout(() => this.updateGameIA(this.gameStatus), 1000);
       }
@@ -118,7 +119,7 @@ export class GameService {
 
   async setChessboardToInitialPosition() {
     let newGameStatus = await this.backendService.getInitBoardState();
-    this.updateGameStatus(newGameStatus, '');
+    this.updateGameStatus(newGameStatus);
   }
 
   parseFenToChessoboard(fen) {
