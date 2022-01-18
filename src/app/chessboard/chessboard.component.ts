@@ -36,15 +36,7 @@ export class ChessboardComponent implements OnInit {
 
   onChessboardSubjectChanged(chessboardSubject) {
     this.chessBoard = chessboardSubject.chessboard;
-    if (chessboardSubject.lastMoveOri != '') {
-      console.log('Update');
-      let cellMoveOri = document.getElementById(chessboardSubject.lastMoveOri);
-      let cellMoveDst = document.getElementById(chessboardSubject.lastMoveDst);
-      cellMoveOri.style.border = '2px solid white';
-      cellMoveDst.classList.add('cellMove');
-    } else {
-      console.log('do nothing');
-    }
+   
   }
 
   resetAndShowGif() {

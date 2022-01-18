@@ -23,9 +23,6 @@ export class ChesscellComponent implements OnInit {
     this.isBlack = this.value % 2 == 0;
     this.id = this.cell.letter + this.cell.position.y;
     this.moved = this.cell.moved;
-    if(this.moved){
-      console.log("cell moved :" + )
-    }
   }
 
   drop(event: CdkDragDrop<string[]>) {
