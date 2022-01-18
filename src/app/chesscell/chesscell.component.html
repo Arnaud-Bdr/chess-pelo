@@ -2,7 +2,8 @@
   class="cell"
   [id]="id"
   [ngClass]="{
-    cellMove: moved,
+    cellMoveBlack: moved && isBlack,
+    cellMoveWhite: moved && !isBlack,
     black: isBlack && !moved,
     white: !isBlack && !moved
   }"
