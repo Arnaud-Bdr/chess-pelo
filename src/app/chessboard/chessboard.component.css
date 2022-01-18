@@ -32,11 +32,13 @@
 }
 
 .gif-container {
-  width: 220;
-  height: 170;
+  width: 31vw;
+  height: 10vw;
   position: absolute;
-  top: 33%;
-  left: 40%;
+  top: 40%;
+  left: 45%;
+  margin-left: -16vw;
+  margin-top: -5vw;
   z-index: 10;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;

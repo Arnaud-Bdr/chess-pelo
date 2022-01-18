@@ -13,6 +13,7 @@ export class GameService {
   private gameStatus: any;
   private lastMoveOri: string = '';
   private lastMoveDst: string = '';
+  private pieceTaken: boolean = false;
   chessboardSubject = new Subject<any>();
   gameStatusSubject = new Subject<any>();
 
@@ -47,7 +48,12 @@ export class GameService {
   }
 
   emitGameStatus() {
-    this.gameStatusSubject.next(this.gameStatus);
+    let gameStatusAugmented = {
+      game: this.gameStatus,
+      pieceTaken: this.pieceTaken,
+    };
+
+    this.gameStatusSubject.next(gameStatusAugmented);
   }
 
   async movePiece(ori, dst, pieceType) {
@@ -71,14 +77,13 @@ export class GameService {
     let chessColDst = this.colLettersArray.indexOf(dst.charAt(0));
     let chessRowDst = dst.charAt(1);
 
-    let pieceTaken = this.chessboardPieces[8 - chessRowDst][chessColDst];
+    this.pieceTaken = this.chessboardPieces[8 - chessRowDst][chessColDst];
     this.chessboardPieces[8 - chessRowOri][chessColOri] = '';
     this.chessboardPieces[8 - chessRowDst][chessColDst] = pieceType;
 
     this.lastMoveOri = ori;
     this.lastMoveDst = dst;
     this.gameStatus.turn.color = 'black';
-    //if (pieceTaken != '') this.emitPieceTaken(pieceTaken);
     // Emit for immediate move rendering before receeiving validation from stockfish engine
     this.emitchessboardSubject();
     let newGameStatus = await this.backendService.sendMove(
@@ -119,6 +124,8 @@ export class GameService {
 
   async setChessboardToInitialPosition() {
     let newGameStatus = await this.backendService.getInitBoardState();
+    this.lastMoveDst = '';
+    this.lastMoveOri = '';
     this.updateGameStatus(newGameStatus);
   }
 

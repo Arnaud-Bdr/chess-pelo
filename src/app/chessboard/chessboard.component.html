@@ -1,6 +1,6 @@
 <div id="btnContainer">
-  <button id="twoPlayersBtn">Two players play</button>
-  <button id="iaBtn">Against IA play</button>
+  <button id="restart" (click)="resetBoard()">Restart game</button>
+  <!--button id="iaBtn">Against IA play</button-->
 </div>
 <div id="chessboard" cdkDropListGroup>
   <div class="row" *ngFor="let row of chessBoard; let i = index">

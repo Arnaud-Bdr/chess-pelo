@@ -32,11 +32,14 @@ export class ChessboardComponent implements OnInit {
     this.gifs = this.gifService.getGifs();
   }
 
-  onGameStatusChanged(gameStatus) {}
+  onGameStatusChanged(gameStatus) {
+    if (gameStatus.pieceTaken) {
+      this.resetAndShowGif();
+    }
+  }
 
   onChessboardSubjectChanged(chessboardSubject) {
     this.chessBoard = chessboardSubject.chessboard;
-   
   }
 
   resetAndShowGif() {
@@ -59,5 +62,9 @@ export class ChessboardComponent implements OnInit {
     this.timeout = setTimeout(() => {
       this.gifContainer.style.display = 'none';
     }, gifModel.durationMS);
+  }
+
+  resetBoard() {
+    this.gs.setChessboardToInitialPosition();
   }
 }
