@@ -58,7 +58,10 @@ export class GameService {
     let move = ori + dst;
 
     // IF move is illegal do nothing
-    if (!this.gameStatus.turn.legalMoves.includes(move)) {
+    if (
+      !this.gameStatus.turn.legalMoves.includes(move) ||
+      this.gameStatus.turn.color == 'black'
+    ) {
       return;
     }
 
@@ -74,7 +77,8 @@ export class GameService {
 
     this.lastMoveOri = ori;
     this.lastMoveDst = dst;
-    // Emit for immediate move rendering before receveiving validation from from stockfish engine
+    this.gameStatus.turn.color = 'black';
+    // Emit for immediate move rendering before receeiving validation from stockfish engine
     this.emitchessboardSubject();
     let newGameStatus = await this.backendService.sendMove(
       this.gameStatus,
