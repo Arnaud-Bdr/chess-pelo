@@ -25,6 +25,10 @@ img {
   left: 24%;
 }
 
+.cellMove {
+  background-color: rgba(11, 210, 245, 0.5);
+}
+
 .black {
   background-color: rgba(56, 91, 119, 0.3);
 }
