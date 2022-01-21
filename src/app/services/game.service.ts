@@ -139,7 +139,7 @@ export class GameService {
       this.emitGameStatus();
       this.emitchessboardSubject();
 
-      if (this.gameStatus.turn.color == 'blacka') {
+      if (this.gameStatus.turn.color == 'black') {
         await setTimeout(() => this.updateGameIA(this.gameStatus), 1000);
       }
     } else {
@@ -149,8 +149,8 @@ export class GameService {
   }
 
   async setChessboardToInitialPosition() {
-    //let newGameStatus = await this.backendService.getInitBoardState();
-    let newGameStatus = await this.backendService.getBoardState(this.fenDebug);
+    let newGameStatus = await this.backendService.getInitBoardState();
+    //let newGameStatus = await this.backendService.getBoardState(this.fenDebug);
 
     this.lastMoveDst = '';
     this.lastMoveOri = '';
