@@ -6,7 +6,7 @@ import { GifService } from '../services/gif.service';
 @Component({
   selector: 'chessboard',
   templateUrl: './chessboard.component.html',
-  styleUrls: ['./chessboard.component.css'],
+  styleUrls: ['./chessboard.component.scss'],
 })
 export class ChessboardComponent implements OnInit {
   chessBoard: any[];

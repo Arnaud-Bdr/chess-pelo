@@ -2,6 +2,12 @@
   <button id="restart" (click)="resetBoard()">Restart game</button>
   <!--button id="iaBtn">Against IA play</button-->
 </div>
+<div id="joPlayer">
+  <img
+    src="https://github.com/Arnaud-Bdr/chess-pelo/blob/master/src/app/assets/pieces/Jo.png?raw=true"
+  />
+  <div id="joMsg">Bonjour</div>
+</div>
 <div id="chessboard" cdkDropListGroup>
   <div class="row" *ngFor="let row of chessBoard; let i = index">
     <chesscell *ngFor="let cell of row" [cell]="cell"></chesscell>
