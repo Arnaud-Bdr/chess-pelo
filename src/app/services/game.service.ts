@@ -17,7 +17,7 @@ export class GameService {
   chessboardSubject = new Subject<any>();
   gameStatusSubject = new Subject<any>();
 
-  private fenDebug: string = 'k7/p6P/7P/8/8/8/8/7K w - - 0 10';
+  private fenDebug: string = 'k7/p6P/7P/8/8/8/p7/7K w - - 0 10';
 
   constructor(private backendService: BackEndService) {}
 
@@ -66,7 +66,14 @@ export class GameService {
 
     let proPiece = '';
     // check for promotion
-    if (dst.charAt(0) == 'h' && this.gameStatus.turn.color == 'white') {
+    if (
+      (pieceType.toLocaleLowerCase() == 'p' &&
+        dst.charAt(1) == '8' &&
+        this.gameStatus.turn.color == 'white') ||
+      (pieceType.toLocaleLowerCase() == 'p' &&
+        dst.charAt(1) == '1' &&
+        this.gameStatus.turn.color == 'black')
+    ) {
       if (confirm('Promote to queen ?')) {
         proPiece = this.gameStatus.turn.color == 'white' ? 'Q' : 'q';
       } else {
@@ -79,12 +86,9 @@ export class GameService {
     }
 
     let move = ori + dst + proPiece.toLocaleLowerCase();
-  
-    // IF move is illegal or it is not our do nothing
-    if (
-      !this.gameStatus.turn.legalMoves.includes(move) ||
-      this.gameStatus.turn.color == 'black'
-    ) {
+
+    // IF move is illegal  do nothing
+    if (!this.gameStatus.turn.legalMoves.includes(move)) {
       return;
     }
 
@@ -96,16 +100,16 @@ export class GameService {
 
     this.pieceTaken = this.chessboardPieces[8 - chessRowDst][chessColDst];
     this.chessboardPieces[8 - chessRowOri][chessColOri] = '';
-    if (proPiece != ''){
+    if (proPiece != '') {
       this.chessboardPieces[8 - chessRowDst][chessColDst] = proPiece;
     } else {
       this.chessboardPieces[8 - chessRowDst][chessColDst] = pieceType;
     }
-   
 
     this.lastMoveOri = ori;
     this.lastMoveDst = dst;
-    this.gameStatus.turn.color = 'black';
+    this.gameStatus.turn.color =
+      this.gameStatus.turn.color == 'white' ? 'black' : 'white';
     // Emit for immediate move rendering before receeiving validation from stockfish engine
     this.emitchessboardSubject();
     let newGameStatus = await this.backendService.sendMove(
@@ -135,7 +139,7 @@ export class GameService {
       this.emitGameStatus();
       this.emitchessboardSubject();
 
-      if (this.gameStatus.turn.color == 'black') {
+      if (this.gameStatus.turn.color == 'blacka') {
         await setTimeout(() => this.updateGameIA(this.gameStatus), 1000);
       }
     } else {
