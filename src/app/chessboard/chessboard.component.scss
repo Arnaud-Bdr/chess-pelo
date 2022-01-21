@@ -1,8 +1,8 @@
 #chessboard {
   width: 96vw;
   height: 96vw;
-  max-width: 700px;
-  max-height: 700px;
+  max-width: 600px;
+  max-height: 600px;
   display: flex;
   flex-direction: column;
   margin-left: auto;
@@ -16,22 +16,26 @@
 
 #joPlayer {
   width: 96vw;
-  height: 7vh;
-  max-width: 700px;
+  height: 6vh;
+  max-width: 00px;
   margin-left: auto;
   margin-right: auto;
   display: flex;
+  margin-bottom: 5px;
   img {
     object-fit: contain;
     flex: 10;
     width: 100;
-    background-color: red;
     align-content: left;
+    border-radius: 15px;
   }
   #joMsg {
     flex: 90;
     margin-top: auto;
     margin-left: 10px;
+    margin-bottom: 5px;
+    color: white;
+    font-size: medium;
   }
 }
 
