@@ -17,6 +17,8 @@ export class GameService {
   chessboardSubject = new Subject<any>();
   gameStatusSubject = new Subject<any>();
 
+  private fenDebug: string = 'k7/p6P//8/8/8/8/7K w - - 0 10';
+
   constructor(private backendService: BackEndService) {}
 
   emitchessboardSubject() {
@@ -53,7 +55,7 @@ export class GameService {
       pieceTaken: this.pieceTaken,
     };
     this.gameStatusSubject.next(gameStatusAugmented);
-    this.pieceTaken = false
+    this.pieceTaken = false;
   }
 
   async movePiece(ori, dst, pieceType) {
@@ -123,7 +125,9 @@ export class GameService {
   }
 
   async setChessboardToInitialPosition() {
-    let newGameStatus = await this.backendService.getInitBoardState();
+    //let newGameStatus = await this.backendService.getInitBoardState();
+    let newGameStatus = await this.backendService.getBoardState(this.fenDebug);
+
     this.lastMoveDst = '';
     this.lastMoveOri = '';
     this.updateGameStatus(newGameStatus);

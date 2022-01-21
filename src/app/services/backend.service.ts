@@ -20,6 +20,20 @@ export class BackEndService {
     return answer;
   }
 
+  async getBoardState(fen) {
+    let answer;
+    await this.httpClient
+      .get<any>(this.rootUrl + 'fen=' + fen + '&move=&format=json')
+      .toPromise()
+      .then((ans) => {
+        answer = ans;
+      })
+      .catch((error) => {
+        console.log('Erreur ! : ' + error);
+      });
+    return answer;
+  }
+
   async sendMove(gameStatus, move) {
     let answer;
     await this.httpClient
