@@ -17,7 +17,7 @@ export class GameService {
   chessboardSubject = new Subject<any>();
   gameStatusSubject = new Subject<any>();
 
-  private fenDebug: string = 'k7/p6P//8/8/8/8/7K w - - 0 10';
+  private fenDebug: string = 'k7/p6P/7P/8/8/8/8/7K w - - 0 10';
 
   constructor(private backendService: BackEndService) {}
 
@@ -63,8 +63,23 @@ export class GameService {
     if (ori == dst) {
       return;
     }
-    let move = ori + dst;
 
+    let proPiece = '';
+    // check for promotion
+    if (dst.charAt(0) == 'h' && this.gameStatus.turn.color == 'white') {
+      if (confirm('Promote to queen ?')) {
+        proPiece = this.gameStatus.turn.color == 'white' ? 'Q' : 'q';
+      } else {
+        if (confirm('Promote to rook ? Otherwise it will be bishop')) {
+          proPiece = this.gameStatus.turn.color == 'white' ? 'R' : 'r';
+        } else {
+          proPiece = this.gameStatus.turn.color == 'white' ? 'B' : 'b';
+        }
+      }
+    }
+
+    let move = ori + dst + proPiece.toLocaleLowerCase();
+  
     // IF move is illegal or it is not our do nothing
     if (
       !this.gameStatus.turn.legalMoves.includes(move) ||
@@ -81,7 +96,12 @@ export class GameService {
 
     this.pieceTaken = this.chessboardPieces[8 - chessRowDst][chessColDst];
     this.chessboardPieces[8 - chessRowOri][chessColOri] = '';
-    this.chessboardPieces[8 - chessRowDst][chessColDst] = pieceType;
+    if (proPiece != ''){
+      this.chessboardPieces[8 - chessRowDst][chessColDst] = proPiece;
+    } else {
+      this.chessboardPieces[8 - chessRowDst][chessColDst] = pieceType;
+    }
+   
 
     this.lastMoveOri = ori;
     this.lastMoveDst = dst;
