@@ -34,7 +34,24 @@
     margin-left: 10px;
     margin-bottom: 5px;
     color: white;
-    font-size: medium;
+    font-size: 1em;
+    opacity: 0;
+    animation: 5s ease 2s 1 showMessage forwards;
+  }
+}
+
+@keyframes showMessage {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 
