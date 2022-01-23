@@ -33,7 +33,7 @@ export class ChessboardComponent implements OnInit {
     setTimeout(
       () =>
         this.makeJoTalk(
-          'Salut les Pelos, prêts pour une partie ? Clickez si vous êtes des hommes'
+          "Salut Pelo, prêts pour une partie ? Clicke  t'es un homme"
         ),
       1500
     );

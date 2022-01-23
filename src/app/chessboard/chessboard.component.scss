@@ -17,7 +17,7 @@
   width: 90vw;
   height: 8.5vh;
   max-width: 550px;
-  min-height: 70;
+  min-height: 70px;
   margin-left: auto;
   margin-right: auto;
   display: flex;
@@ -34,13 +34,13 @@
     padding-bottom: 5px;
 
     #joMsg {
-      padding: 1%;
+      padding: 1.5%;
       height: 60%;
       width: fit-content;
       margin-top: auto;
       color: white;
       font-size: 0.9em;
-      opacity: 1;
+      opacity: 0;
       border: 2px solid white;
       border-radius: 7px 7px 15px 1px;
     }
