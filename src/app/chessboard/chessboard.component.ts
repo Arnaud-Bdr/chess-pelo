@@ -14,6 +14,8 @@ export class ChessboardComponent implements OnInit {
   gifContainer: HTMLElement;
   gif: HTMLImageElement;
   timeout: any;
+  // Position rating relative to black
+  positionRating = 0;
 
   constructor(
     private gs: GameService,
@@ -31,17 +33,33 @@ export class ChessboardComponent implements OnInit {
     );
     this.gifs = this.gifService.getGifs();
     setTimeout(
-      () =>
-        this.makeJoTalk(
-          "Salut Pelo, prêts pour une partie ? Clicke si t'es un homme"
-        ),
+      () => this.makeJoTalk('Salut Pélo, prêts pour une partie ?'),
       1500
     );
   }
 
   onGameStatusChanged(gameStatus) {
-    if (gameStatus.pieceTaken) {
-      this.resetAndShowGif();
+    if (gameStatus.turn.color == 'black') {
+      // Check for msg from JO depending on position rating
+      if (gameStatus.turn.eval['1'][0] != null) {
+        if (gameStatus.isGameOver) {
+          this.makeJoTalk("T'as gagné cette partie Pélo");
+          return;
+        }
+        let diffRating = gameStatus.turn.eval['1'][0] - this.positionRating;
+        console.log('Diff Rating' + diffRating);
+        if (diffRating <= -300) {
+          this.makeJoTalk('Bien joué Pelo');
+        } else if (diffRating >= 300) {
+          this.makeJoTalk("C'était un mauvais coup ça pélo");
+        }
+        this.positionRating = gameStatus.turn.eval['1'][0];
+      }
+    } else if (gameStatus.turn.color == 'white') {
+      if (gameStatus.isGameOver) {
+        this.makeJoTalk("T'as gagné cette partie Pélo");
+        return;
+      }
     }
   }
 
@@ -50,11 +68,7 @@ export class ChessboardComponent implements OnInit {
   }
 
   test() {
-    let joMsgDiv = document.getElementById('joMsg');
-    joMsgDiv.classList.remove('animated');
-    // Make browser to reflow otherwise animation will not  be refresh
-    joMsgDiv.offsetWidth;
-    joMsgDiv.classList.add('animated');
+
   }
 
   makeJoTalk(msg: string) {

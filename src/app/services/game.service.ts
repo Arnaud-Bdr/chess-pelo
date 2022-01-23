@@ -13,7 +13,6 @@ export class GameService {
   private gameStatus: any;
   private lastMoveOri: string = '';
   private lastMoveDst: string = '';
-  private pieceTaken: boolean = false;
   chessboardSubject = new Subject<any>();
   gameStatusSubject = new Subject<any>();
 
@@ -50,12 +49,7 @@ export class GameService {
   }
 
   emitGameStatus() {
-    let gameStatusAugmented = {
-      game: this.gameStatus,
-      pieceTaken: this.pieceTaken,
-    };
-    this.gameStatusSubject.next(gameStatusAugmented);
-    this.pieceTaken = false;
+    this.gameStatusSubject.next(this.gameStatus);
   }
 
   async movePiece(ori, dst, pieceType) {
@@ -98,7 +92,6 @@ export class GameService {
     let chessColDst = this.colLettersArray.indexOf(dst.charAt(0));
     let chessRowDst = dst.charAt(1);
 
-    this.pieceTaken = this.chessboardPieces[8 - chessRowDst][chessColDst];
     this.chessboardPieces[8 - chessRowOri][chessColOri] = '';
     if (proPiece != '') {
       this.chessboardPieces[8 - chessRowDst][chessColDst] = proPiece;
