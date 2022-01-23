@@ -15,7 +15,7 @@
 
 #joPlayer {
   width: 90vw;
-  height: 6vh;
+  height: 8vh;
   max-width: 550px;
   margin-left: auto;
   margin-right: auto;
@@ -28,15 +28,32 @@
     align-content: left;
     border-radius: 15px;
   }
-  #joMsg {
+  #hcontainer {
     flex: 90;
-    margin-top: auto;
     margin-left: 10px;
-    margin-bottom: 5px;
-    color: white;
-    font-size: 1em;
-    opacity: 0;
-    animation: 5s ease 2s 1 showMessage forwards;
+    padding-bottom: 5px;
+
+    #joMsg {
+      padding: 5px;
+      height: 60%;
+      width: fit-content;
+      margin-top: auto;
+      color: white;
+      font-size: 1em;
+      opacity: 1;
+      border: 2px solid white;
+      border-radius: 7px 7px 15px 1px;
+    }
+    #joMsg.animated {
+      /* animation: 5s ease 0s 1 showMessage forwards; */
+    }
+    #joNameRating {
+      height: 4%;
+      color: white;
+      font-weight: bold;
+      font-style: italic;
+      font-size: 1em;
+    }
   }
 }
 

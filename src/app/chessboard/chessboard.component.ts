@@ -30,6 +30,10 @@ export class ChessboardComponent implements OnInit {
       this.onGameStatusChanged(gameStatus)
     );
     this.gifs = this.gifService.getGifs();
+    setTimeout(
+      () => this.makeJoTalk('Salut les Pelos, prêts pour une partie ?'),
+      1500
+    );
   }
 
   onGameStatusChanged(gameStatus) {
@@ -40,6 +44,23 @@ export class ChessboardComponent implements OnInit {
 
   onChessboardSubjectChanged(chessboardSubject) {
     this.chessBoard = chessboardSubject.chessboard;
+  }
+
+  test() {
+    let joMsgDiv = document.getElementById('joMsg');
+    joMsgDiv.classList.remove('animated');
+    // Make browser to reflow otherwise animation will not  be refresh
+    joMsgDiv.offsetWidth;
+    joMsgDiv.classList.add('animated');
+  }
+
+  makeJoTalk(msg: string) {
+    let joMsgDiv = document.getElementById('joMsg');
+    joMsgDiv.innerText = msg;
+    joMsgDiv.classList.remove('animated');
+    // Make browser to reflow otherwise animation will not  be refresh
+    joMsgDiv.offsetWidth;
+    joMsgDiv.classList.add('animated');
   }
 
   resetAndShowGif() {
