@@ -54,8 +54,7 @@ export class BackEndService {
         console.log('Erreur ! : ' + error);
       });
 
-    console.log(answer.fen);
-    console.log(answer.turn.eval['1']);
+    console.log(answer);
     return answer;
   }
 }
