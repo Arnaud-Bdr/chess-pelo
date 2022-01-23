@@ -1,6 +1,6 @@
 <div id="btnContainer">
   <button id="restart" (click)="resetBoard()">Restart game</button>
-  <button id="iaBtn" (click)="test()">Test</button>
+  <!--button id="iaBtn" (click)="test()">Test</button-->
 </div>
 <div id="joPlayer">
   <div id="joImgContainer">
@@ -14,14 +14,14 @@
   </div>
 </div>
 <div id="chessboard" cdkDropListGroup>
-  <div class="row" *ngFor="let row of chessBoard; let i = index">
-    <chesscell *ngFor="let cell of row" [cell]="cell"></chesscell>
-  </div>
   <div
     class="gif-container"
     id="{{ 'gif-container' + i }}"
     *ngFor="let gif of gifs; let i = index"
   >
     <img id="{{ 'gif' + i }}" [src]="gif.url" />
+  </div>
+  <div class="row" *ngFor="let row of chessBoard; let i = index">
+    <chesscell *ngFor="let cell of row" [cell]="cell"></chesscell>
   </div>
 </div>

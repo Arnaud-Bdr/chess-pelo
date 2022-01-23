@@ -48,10 +48,10 @@ export class ChessboardComponent implements OnInit {
         }
         let diffRating = gameStatus.turn.eval['1'][0] - this.positionRating;
         console.log('Diff Rating' + diffRating);
-        if ((diffRating) <= -350) {
+        if (diffRating <= -40) {
           this.makeJoTalk('Tres bon coup pélo');
-        }
-        eif (diffRating <= -200) {
+          this.resetAndShowGif();
+        } else if (diffRating <= -300) {
           this.makeJoTalk(this.is.getRandomPunchCool());
         } else if (diffRating >= 300) {
           this.makeJoTalk(this.is.getRandomPunchNotCool());
