@@ -31,7 +31,10 @@ export class ChessboardComponent implements OnInit {
     );
     this.gifs = this.gifService.getGifs();
     setTimeout(
-      () => this.makeJoTalk('Salut les Pelos, prêts pour une partie ?'),
+      () =>
+        this.makeJoTalk(
+          'Salut les Pelos, prêts pour une partie ? Clickez si vous êtes des hommes'
+        ),
       1500
     );
   }
