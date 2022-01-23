@@ -2,7 +2,7 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { DragService } from '../services/drag.service';
 import { GameService } from '../services/game.service';
-import { GifService } from '../services/gif.service';
+import { InteractService } from '../services/interact.service';
 @Component({
   selector: 'chessboard',
   templateUrl: './chessboard.component.html',
@@ -20,7 +20,7 @@ export class ChessboardComponent implements OnInit {
   constructor(
     private gs: GameService,
     private ds: DragService,
-    private gifService: GifService
+    private is: InteractService
   ) {}
 
   ngOnInit() {
@@ -31,9 +31,9 @@ export class ChessboardComponent implements OnInit {
     this.gs.gameStatusSubject.subscribe((gameStatus) =>
       this.onGameStatusChanged(gameStatus)
     );
-    this.gifs = this.gifService.getGifs();
+    this.gifs = this.is.getGifs();
     setTimeout(
-      () => this.makeJoTalk('Salut Pélo, prêts pour une partie ?'),
+      () => this.makeJoTalk('Salut Pélo, prêt pour une partie ?'),
       1500
     );
   }
@@ -48,16 +48,19 @@ export class ChessboardComponent implements OnInit {
         }
         let diffRating = gameStatus.turn.eval['1'][0] - this.positionRating;
         console.log('Diff Rating' + diffRating);
-        if (diffRating <= -300) {
-          this.makeJoTalk('Bien joué Pelo');
+        if ((diffRating) => -350) {
+          this.makeJoTalk('Tres bon coup pélo');
+        }
+        if (diffRating <= -200) {
+          this.makeJoTalk(this.is.getRandomPunchCool());
         } else if (diffRating >= 300) {
-          this.makeJoTalk("C'était un mauvais coup ça pélo");
+          this.makeJoTalk(this.is.getRandomPunchNotCool());
         }
         this.positionRating = gameStatus.turn.eval['1'][0];
       }
     } else if (gameStatus.turn.color == 'white') {
       if (gameStatus.isGameOver) {
-        this.makeJoTalk("T'as gagné cette partie Pélo");
+        this.makeJoTalk("La partie est terminado P");
         return;
       }
     }
@@ -67,9 +70,7 @@ export class ChessboardComponent implements OnInit {
     this.chessBoard = chessboardSubject.chessboard;
   }
 
-  test() {
-
-  }
+  test() {}
 
   makeJoTalk(msg: string) {
     let joMsgDiv = document.getElementById('joMsg');
@@ -89,10 +90,10 @@ export class ChessboardComponent implements OnInit {
   }
 
   showGif() {
-    let r = Math.floor(Math.random() * this.gifService.gifs.length);
+    let r = Math.floor(Math.random() * this.is.gifs.length);
     this.gifContainer = document.getElementById('gif-container' + r);
     this.gif = <HTMLImageElement>document.getElementById('gif' + r);
-    let gifModel = this.gifService.getGifById(r);
+    let gifModel = this.is.getGifById(r);
     this.gifContainer.style.display = 'block';
     this.gifContainer.style.animationName = 'show-gif';
     this.gifContainer.style.animationDuration =
