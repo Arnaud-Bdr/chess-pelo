@@ -38,7 +38,7 @@
     flex: 90;
     margin-left: 3px;
     #joMsg {
-      height: 5%;
+      height: 55%;
       width: fit-content;
       margin-top: auto;
       color: white;
@@ -46,7 +46,7 @@
       opacity: 0;
       border: 2px solid white;
       border-radius: 7px 7px 15px 1px;
-      padding: 5px;
+      padding: 5px 7px 5px 7px;
     }
     #joMsg.animated {
       animation: 5s ease 0s 1 showMessage forwards;
