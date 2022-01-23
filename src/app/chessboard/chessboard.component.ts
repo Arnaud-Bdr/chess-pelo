@@ -48,10 +48,10 @@ export class ChessboardComponent implements OnInit {
         }
         let diffRating = gameStatus.turn.eval['1'][0] - this.positionRating;
         console.log('Diff Rating' + diffRating);
-        if ((diffRating) => -350) {
+        if ((diffRating) <= -350) {
           this.makeJoTalk('Tres bon coup pélo');
         }
-        if (diffRating <= -200) {
+        eif (diffRating <= -200) {
           this.makeJoTalk(this.is.getRandomPunchCool());
         } else if (diffRating >= 300) {
           this.makeJoTalk(this.is.getRandomPunchNotCool());
@@ -60,7 +60,7 @@ export class ChessboardComponent implements OnInit {
       }
     } else if (gameStatus.turn.color == 'white') {
       if (gameStatus.isGameOver) {
-        this.makeJoTalk("La partie est terminado P");
+        this.makeJoTalk('La partie est terminado Pélo');
         return;
       }
     }
