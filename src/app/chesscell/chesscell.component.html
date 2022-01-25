@@ -4,7 +4,7 @@
   [ngClass]="{
     cellMoveBlack: moved && isBlack && !isCheckmate && !isCheckmate,
     cellMoveWhite: moved && !isBlack && !isCheckmate && !isCheckmate,
-    black: isBlack && !moved && !isCheckmate && !isCheckmate,
+    black: isBlack && !moved && !isInCheck && !isCheckmate,
     white: !isBlack && !moved && !isInCheck && !isCheckmate,
     checkmate: isCheckmate,
     inCheck: isInCheck
