@@ -9,18 +9,25 @@ export class InteractService {
   ];
 
   private joPunchlineCool = [
-    "C'est bien joué pélo",
-    'Continue comme ça pélo',
-    'Je viens de prendre une droite',
-    'Tu te bas bien pélo',
+    'Tu joues bien Pélo, va falloir que je me concentre',
+    "Mais quelle position de merde, j'aurai pas d manger avant de jouer",
+    "Heureusement que ma spécialité c'est jouer des position perdante Pélo",
+    'Je suis pas bien là, je fais des coups à la Acezoo',
   ];
 
   private joPunchlineNotCool = [
-    'Donne pas tes pièces en un Pélo',
-    'Pas très bon coup ça Pélo',
+    'Faut se concentrer Pélo',
+    'Ma position est écrasante Pélo, je vais te shadow boxer',
     'Tu joues comme Acezoo en sortie de cuite Pélo',
     'Tu te sens pas bien pélo ?',
-    "Faut pas s'endormir sur l'échéquier pelo",
+    "Faut pas s'endormir sur l'échéquier Pélo",
+  ];
+
+  private joMsgEqualGame = [
+    'La partie est sérrée Pelo, mais tu vas craquer',
+    "Je vois pas encore le gain mais ça va arriver ne t'inquiète pas",
+    'Tu te bas bien Pelo mais ça va pas durer',
+    'Tu joues pour la nulle Pélo ?',
   ];
 
   getGifById(id: number) {
@@ -43,5 +50,10 @@ export class InteractService {
   getRandomPunchNotCool() {
     let r = Math.floor(Math.random() * this.joPunchlineNotCool.length);
     return this.joPunchlineNotCool[r];
+  }
+
+  getRandomMsgEqualGame() {
+    let r = Math.floor(Math.random() * this.joMsgEqualGame.length);
+    return this.joMsgEqualGame[r];
   }
 }

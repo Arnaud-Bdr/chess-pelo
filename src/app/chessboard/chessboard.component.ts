@@ -61,7 +61,6 @@ export class ChessboardComponent implements OnInit {
         this.mateIn = 0;
         let newPositionRating = gameStatus.turn.eval['1'][0];
         this.setNewPositionLevel(newPositionRating);
-
         // Check if a very good move have been played, then triggers gif
         if (newPositionRating - this.lastPositionRating <= -400) {
           this.resetAndShowGif();
@@ -143,15 +142,21 @@ export class ChessboardComponent implements OnInit {
       newPositionRating > this.positionLevels[this.positionLevel + 1]
     ) {
       ++this.positionLevel;
-      this.is.getRandomPunchNotCool();
+      this.makeJoTalk(this.is.getRandomPunchNotCool());
     } else if (
       this.positionLevel - 1 > 0 &&
       newPositionRating < this.positionLevels[this.positionLevel - 1]
     ) {
       --this.positionLevel;
-      this.is.getRandomPunchCool();
+      this.makeJoTalk(this.is.getRandomPunchCool());
     } else {
       this.turnInSamePositionLevel++;
+      if (this.turnInSamePositionLevel > 10) {
+        this.turnInSamePositionLevel = 0;
+        if (this.positionLevel == 2) {
+          this.makeJoTalk(this.is.getRandomMsgEqualGame());
+        }
+      }
     }
   }
 }
