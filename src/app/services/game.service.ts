@@ -53,10 +53,6 @@ export class GameService {
     this.gameStatusSubject.next(this.gameStatus);
   }
 
-  getGameStatus() {
-    return this.gameStatus;
-  }
-
   async movePiece(ori, dst, pieceType) {
     // Do nothing if ori == dst
     if (ori == dst) {

@@ -15,11 +15,17 @@ export class ChessboardComponent implements OnInit {
   gif: HTMLImageElement;
   timeout: any;
   // Position rating relative to black, positif is good for black, negatif is good for white
-  positionRating = 0;
+  lastPositionRating = 0;
   // Number of move before mate relative to black, positive means that black can mate in X, negative means that white can mate in
   mateIn = 0;
   isCheckmate: boolean = false;
   gameStatus: any = null;
+
+  // Start at position level 2, IE position rating = 0;
+  // Use position levels to trigger when Jo should talk
+  positionLevel = 2;
+  positionLevels = [-1000, -500, 0, 500, 1000];
+  turnInSamePositionLevel = 0;
 
   constructor(
     private gs: GameService,
@@ -53,16 +59,14 @@ export class ChessboardComponent implements OnInit {
       }
       if (gameStatus.turn.eval['1'][0] != null) {
         this.mateIn = 0;
-        let newPosRating = gameStatus.turn.eval['1'][0];
-        /*if (diffRating <= -400) {
-          this.makeJoTalk('Tres bon coup pélo');
+        let newPositionRating = gameStatus.turn.eval['1'][0];
+        this.setNewPositionLevel(newPositionRating);
+
+        // Check if a very good move have been played, then triggers gif
+        if (newPositionRating - this.lastPositionRating <= -400) {
           this.resetAndShowGif();
-        } else if (diffRating <= -300) {
-          this.makeJoTalk(this.is.getRandomPunchCool());
-        } else if (diffRating >= 300) {
-          this.makeJoTalk(this.is.getRandomPunchNotCool());
-        }*/
-        this.positionRating = gameStatus.turn.eval['1'][0];
+        }
+        this.lastPositionRating = newPositionRating;
       } // If there is no evaluation position that means a mate is possible
       else if (this.mateIn == 0) {
         this.mateIn = gameStatus.turn.eval['1'][1];
@@ -125,8 +129,29 @@ export class ChessboardComponent implements OnInit {
   }
 
   resetBoard() {
-    this.positionRating = 0;
+    this.lastPositionRating = 0;
     this.isCheckmate = false;
+    this.positionLevel = 2;
+    this.turnInSamePositionLevel = 0;
+    this.mateIn = 0;
     this.gs.setChessboardToInitialPosition();
+  }
+
+  setNewPositionLevel(newPositionRating) {
+    if (
+      this.positionLevel + 1 < this.positionLevels.length &&
+      newPositionRating > this.positionLevels[this.positionLevel + 1]
+    ) {
+      ++this.positionLevel;
+      this.is.getRandomPunchNotCool();
+    } else if (
+      this.positionLevel - 1 > 0 &&
+      newPositionRating < this.positionLevels[this.positionLevel - 1]
+    ) {
+      --this.positionLevel;
+      this.is.getRandomPunchCool();
+    } else {
+      this.turnInSamePositionLevel++;
+    }
   }
 }
