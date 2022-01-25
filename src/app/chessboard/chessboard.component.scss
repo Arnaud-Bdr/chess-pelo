@@ -13,6 +13,10 @@
   transform-origin: initial;
 }
 
+.mate {
+  background-color: rgba($color: #aaa5a500, $alpha: 0.3);
+}
+
 #joPlayer {
   width: 90vw;
   height: 8.5vh;
@@ -42,14 +46,14 @@
       width: fit-content;
       margin-top: auto;
       color: white;
-      font-size: 0.9em;
+      font-size: 1em;
       opacity: 0;
-      border: 2px solid white;
+      border: 3px solid white;
       border-radius: 7px 7px 15px 1px;
       padding: 5px 7px 5px 7px;
     }
     #joMsg.animated {
-      animation: 5s ease 0s 1 showMessage forwards;
+      animation: 6s ease 0s 1 showMessage forwards;
     }
     #joNameRating {
       color: white;
@@ -64,7 +68,6 @@
 @keyframes showMessage {
   0% {
     opacity: 0;
-    transform: scaleY(0);
   }
   20% {
     opacity: 1;

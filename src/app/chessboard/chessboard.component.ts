@@ -14,8 +14,12 @@ export class ChessboardComponent implements OnInit {
   gifContainer: HTMLElement;
   gif: HTMLImageElement;
   timeout: any;
-  // Position rating relative to black
+  // Position rating relative to black, positif is good for black, negatif is good for white
   positionRating = 0;
+  // Number of move before mate relative to black, positive means that black can mate in X, negative means that white can mate in
+  mateIn = 0;
+  isCheckmate: boolean = false;
+  gameStatus: any = null;
 
   constructor(
     private gs: GameService,
@@ -39,29 +43,46 @@ export class ChessboardComponent implements OnInit {
   }
 
   onGameStatusChanged(gameStatus) {
+    this.gameStatus = gameStatus;
     if (gameStatus.turn.color == 'black') {
       // Check for msg from JO depending on position rating
+      if (gameStatus.isCheckmate) {
+        this.isCheckmate = true;
+        this.makeJoTalk("T'as gagné cette partie Pélo");
+        return;
+      }
       if (gameStatus.turn.eval['1'][0] != null) {
-        if (gameStatus.isGameOver) {
-          this.makeJoTalk("T'as gagné cette partie Pélo");
-          return;
-        }
-        let diffRating = gameStatus.turn.eval['1'][0] - this.positionRating;
-        console.log('Diff Rating' + diffRating);
-        if (diffRating <= -400) {
+        this.mateIn = 0;
+        let newPosRating = gameStatus.turn.eval['1'][0];
+        /*if (diffRating <= -400) {
           this.makeJoTalk('Tres bon coup pélo');
           this.resetAndShowGif();
         } else if (diffRating <= -300) {
           this.makeJoTalk(this.is.getRandomPunchCool());
         } else if (diffRating >= 300) {
           this.makeJoTalk(this.is.getRandomPunchNotCool());
-        }
+        }*/
         this.positionRating = gameStatus.turn.eval['1'][0];
+      } // If there is no evaluation position that means a mate is possible
+      else if (this.mateIn == 0) {
+        this.mateIn = gameStatus.turn.eval['1'][1];
+        if (this.mateIn < 0) {
+          this.makeJoTalk(
+            'Ma position pue la merde Pélo, pourquoi je blunder comme ça !'
+          );
+        } else {
+          this.makeJoTalk(
+            "Je sens qu'il y'a un mate pas loin, fait gaffe Pelo"
+          );
+        }
       }
     } else if (gameStatus.turn.color == 'white') {
-      if (gameStatus.isGameOver) {
+      if (gameStatus.isCheckmate) {
+        this.isCheckmate = true;
         this.makeJoTalk('La partie est terminado Pélo');
         return;
+      } else if (gameStatus.turn.isInCheck) {
+        this.makeJoTalk('Echec au roi Pélo');
       }
     }
   }
@@ -104,6 +125,8 @@ export class ChessboardComponent implements OnInit {
   }
 
   resetBoard() {
+    this.positionRating = 0;
+    this.isCheckmate = false;
     this.gs.setChessboardToInitialPosition();
   }
 }

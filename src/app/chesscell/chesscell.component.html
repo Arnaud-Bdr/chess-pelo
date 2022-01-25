@@ -2,10 +2,12 @@
   class="cell"
   [id]="id"
   [ngClass]="{
-    cellMoveBlack: moved && isBlack,
-    cellMoveWhite: moved && !isBlack,
-    black: isBlack && !moved,
-    white: !isBlack && !moved
+    cellMoveBlack: moved && isBlack && !isCheckmate && !isCheckmate,
+    cellMoveWhite: moved && !isBlack && !isCheckmate && !isCheckmate,
+    black: isBlack && !moved && !isCheckmate && !isCheckmate,
+    white: !isBlack && !moved && !isInCheck && !isCheckmate,
+    checkmate: isCheckmate,
+    inCheck: isInCheck
   }"
   cdkDropList
   cdkDropListSortingDisabled

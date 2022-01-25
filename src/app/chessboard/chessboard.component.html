@@ -13,7 +13,7 @@
     <div id="joNameRating">Joachim 2666</div>
   </div>
 </div>
-<div id="chessboard" cdkDropListGroup>
+<div id="chessboard" cdkDropListGroup [ngClass]="{ mate: isCheckmate }">
   <div
     class="gif-container"
     id="{{ 'gif-container' + i }}"
@@ -22,6 +22,12 @@
     <img id="{{ 'gif' + i }}" [src]="gif.url" />
   </div>
   <div class="row" *ngFor="let row of chessBoard; let i = index">
-    <chesscell *ngFor="let cell of row" [cell]="cell"></chesscell>
+    <chesscell
+      *ngFor="let cell of row"
+      [cell]="cell"
+      [gameStatus]="gameStatus"
+    ></chesscell>
   </div>
 </div>
+<div>rating {{ positionRating }}</div>
+<div>mate in {{ mateIn }}</div>

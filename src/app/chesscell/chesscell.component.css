@@ -112,3 +112,11 @@ img {
 .N {
   background-image: url('https://images.chesscomfiles.com/chess-themes/pieces/neo/150/wn.png');
 }
+
+.inCheck {
+  background-color: rgba(208, 125, 0, 0.952);
+}
+
+.checkmate {
+  background-color: rgba(231, 5, 5, 0.685);
+}

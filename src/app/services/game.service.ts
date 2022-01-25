@@ -13,6 +13,7 @@ export class GameService {
   private gameStatus: any;
   private lastMoveOri: string = '';
   private lastMoveDst: string = '';
+  private whiteCanPlay: boolean = false;
   chessboardSubject = new Subject<any>();
   gameStatusSubject = new Subject<any>();
 
@@ -52,6 +53,10 @@ export class GameService {
     this.gameStatusSubject.next(this.gameStatus);
   }
 
+  getGameStatus() {
+    return this.gameStatus;
+  }
+
   async movePiece(ori, dst, pieceType) {
     // Do nothing if ori == dst
     if (ori == dst) {
@@ -85,6 +90,8 @@ export class GameService {
     if (!this.gameStatus.turn.legalMoves.includes(move)) {
       return;
     }
+    // move is valid, prevent other move from UI, before IA play
+    this.whiteCanPlay = false;
 
     let chessColOri = this.colLettersArray.indexOf(ori.charAt(0));
     let chessRowOri = ori.charAt(1);
@@ -101,8 +108,6 @@ export class GameService {
 
     this.lastMoveOri = ori;
     this.lastMoveDst = dst;
-    this.gameStatus.turn.color =
-      this.gameStatus.turn.color == 'white' ? 'black' : 'white';
     // Emit for immediate move rendering before receeiving validation from stockfish engine
     this.emitchessboardSubject();
     let newGameStatus = await this.backendService.sendMove(
@@ -123,6 +128,7 @@ export class GameService {
     this.parseFenToChessoboard(this.gameStatus.fen);
     this.emitGameStatus();
     this.emitchessboardSubject();
+    this.whiteCanPlay = true;
   }
 
   async updateGameStatus(newGameStatus) {
@@ -131,7 +137,6 @@ export class GameService {
       this.parseFenToChessoboard(this.gameStatus.fen);
       this.emitGameStatus();
       this.emitchessboardSubject();
-
       if (this.gameStatus.turn.color == 'black') {
         await setTimeout(() => this.updateGameIA(this.gameStatus), 1000);
       }
@@ -144,9 +149,9 @@ export class GameService {
   async setChessboardToInitialPosition() {
     let newGameStatus = await this.backendService.getInitBoardState();
     //let newGameStatus = await this.backendService.getBoardState(this.fenDebug);
-
     this.lastMoveDst = '';
     this.lastMoveOri = '';
+    this.whiteCanPlay = true;
     this.updateGameStatus(newGameStatus);
   }
 
