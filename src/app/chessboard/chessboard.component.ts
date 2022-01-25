@@ -142,13 +142,17 @@ export class ChessboardComponent implements OnInit {
       newPositionRating > this.positionLevels[this.positionLevel + 1]
     ) {
       ++this.positionLevel;
-      this.makeJoTalk(this.is.getRandomPunchNotCool());
+      if (this.positionLevel >= 3) {
+        this.makeJoTalk(this.is.getRandomPunchNotCool());
+      }
     } else if (
       this.positionLevel - 1 > 0 &&
       newPositionRating < this.positionLevels[this.positionLevel - 1]
     ) {
       --this.positionLevel;
-      this.makeJoTalk(this.is.getRandomPunchCool());
+      if (this.positionLevel <= 1) {
+        this.makeJoTalk(this.is.getRandomPunchCool());
+      }
     } else {
       this.turnInSamePositionLevel++;
       if (this.turnInSamePositionLevel > 10) {
