@@ -155,7 +155,7 @@ export class ChessboardComponent implements OnInit {
       }
     } else {
       this.turnInSamePositionLevel++;
-      if (this.turnInSamePositionLevel > 10) {
+      if (this.turnInSamePositionLevel > 1) {
         this.turnInSamePositionLevel = 0;
         if (this.positionLevel == 2) {
           this.makeJoTalk(this.is.getRandomMsgEqualGame());
