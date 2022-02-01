@@ -16,6 +16,7 @@ export class ChesscellComponent implements OnInit {
   isCheckmate: boolean = false;
   isInCheck: boolean = false;
   id: string;
+  promotedPiece = '';
 
   constructor(
     private dragService: DragService,
@@ -46,6 +47,41 @@ export class ChesscellComponent implements OnInit {
     let pieceValue = event.item.element.nativeElement.className
       .split(' ')
       .filter((c) => c.length == 1)[0];
-    this.gameService.movePiece(cellOri, cellDst, pieceValue,'');
+    if (this.gameService.checkPromotion(cellOri, cellDst, pieceValue)) {
+      let promotionDisplay = document.getElementById('promote');
+      promotionDisplay.style.opacity = '1';
+      let handler = (promotedValue, gameService) => {
+        return function curried_func(e) {
+          gameService.movePiece(cellOri, cellDst, pieceValue, promotedValue);
+          promotionDisplay.style.opacity = '0';
+        };
+      };
+      document
+        .getElementById('queenChoice')
+        .removeEventListener('click', handler('Q', this.gameService));
+      document
+        .getElementById('queenChoice')
+        .addEventListener('click', handler('Q', this.gameService));
+      document
+        .getElementById('rookChoice')
+        .removeEventListener('click', handler('R', this.gameService));
+      document
+        .getElementById('rookChoice')
+        .addEventListener('click', handler('R', this.gameService));
+      document
+        .getElementById('bishopChoice')
+        .removeEventListener('click', handler('B', this.gameService));
+      document
+        .getElementById('bishopChoice')
+        .addEventListener('click', handler('B', this.gameService));
+      document
+        .getElementById('knightChoice')
+        .removeEventListener('click', handler('N', this.gameService));
+      document
+        .getElementById('knightChoice')
+        .addEventListener('click', handler('N', this.gameService));
+    } else {
+      this.gameService.movePiece(cellOri, cellDst, pieceValue, '');
+    }
   }
 }
