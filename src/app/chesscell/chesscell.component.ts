@@ -49,11 +49,11 @@ export class ChesscellComponent implements OnInit {
       .filter((c) => c.length == 1)[0];
     if (this.gameService.checkPromotion(cellOri, cellDst, pieceValue)) {
       let promotionDisplay = document.getElementById('promote');
-      promotionDisplay.style.opacity = '1';
+      promotionDisplay.style.display = 'block';
       let handler = (promotedValue, gameService) => {
         return function curried_func(e) {
           gameService.movePiece(cellOri, cellDst, pieceValue, promotedValue);
-          promotionDisplay.style.opacity = '0';
+          promotionDisplay.style.display = 'none';
         };
       };
       // Reset all event handler if any
