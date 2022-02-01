@@ -126,7 +126,7 @@ export class GameService {
       this.parseFenToChessoboard(this.gameStatus.fen);
       this.emitGameStatus();
       this.emitchessboardSubject();
-      if (this.gameStatus.turn.color == 'black') {
+      if (this.gameStatus.turn.color == 'black' && !this.gameStatus.isGameOver ) {
         await setTimeout(() => this.updateGameIA(this.gameStatus), 1000);
       }
     } else {

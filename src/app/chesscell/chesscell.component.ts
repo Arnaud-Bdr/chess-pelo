@@ -58,7 +58,7 @@ export class ChesscellComponent implements OnInit {
       };
       // Reset all event handler if any
       promotionDisplay.innerHTML = promotionDisplay.innerHTML;
-      // Add new event handl
+      // Add new event handler
       document
         .getElementById('queenChoice')
         .addEventListener('click', handler('Q', this.gameService));
