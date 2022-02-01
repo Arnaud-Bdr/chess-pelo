@@ -58,11 +58,11 @@ img {
 }
 
 .r {
-  background-image: url('https://images.chesscomfiles.com/chess-themes/pieces/neo/150/br.png');
+  background-image: url('https://github.com/Arnaud-Bdr/chess-pelo/blob/master/src/app/assets/pieces/br.png?raw=true');
 }
 
 .n {
-  background-image: url('https://images.chesscomfiles.com/chess-themes/pieces/neo/150/bn.png');
+  background-image: url('https://github.com/Arnaud-Bdr/chess-pelo/blob/master/src/app/assets/pieces/bk.png?raw=true');
 }
 
 .b {
@@ -78,11 +78,11 @@ img {
 }
 
 .p {
-  background-image: url('https://images.chesscomfiles.com/chess-themes/pieces/neo/150/bp.png');
+  background-image: url('https://github.com/Arnaud-Bdr/chess-pelo/blob/master/src/app/assets/pieces/bp.png?raw=true');
 }
 
 .R {
-  background-image: url('https://images.chesscomfiles.com/chess-themes/pieces/neo/150/wr.png');
+  background-image: url('https://github.com/Arnaud-Bdr/chess-pelo/blob/master/src/app/assets/pieces/wr.png?raw=true');
 }
 
 .B {
@@ -98,11 +98,11 @@ img {
 }
 
 .P {
-  background-image: url('https://images.chesscomfiles.com/chess-themes/pieces/neo/150/wp.png');
+  background-image: url('https://github.com/Arnaud-Bdr/chess-pelo/blob/master/src/app/assets/pieces/wp.png?raw=true');
 }
 
 .N {
-  background-image: url('https://images.chesscomfiles.com/chess-themes/pieces/neo/150/wn.png');
+  background-image: url('https://github.com/Arnaud-Bdr/chess-pelo/blob/master/src/app/assets/pieces/wk.png?raw=true');
 }
 
 .inCheck {

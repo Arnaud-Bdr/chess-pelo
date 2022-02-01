@@ -153,3 +153,29 @@ button {
   display: inline-block;
   margin: 5px;
 }
+
+#promote {
+  position: absolute;
+  width: fit-content;
+  border: 2px solid #fff;
+  background-color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  font-weight: bold;
+  padding: 0.5vw;
+  left: 0;
+  right: 0;
+  top: 40vh;
+  margin-left: auto;
+  margin-right: auto;
+
+  .choicePiece {
+    font-weight: lighter;
+    width: 100%;
+    text-align: center;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+  }
+  .choicePiece:hover {
+    color: white;
+  }
+}

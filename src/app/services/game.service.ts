@@ -53,13 +53,7 @@ export class GameService {
     this.gameStatusSubject.next(this.gameStatus);
   }
 
-  async movePiece(ori, dst, pieceType) {
-    // Do nothing if ori == dst
-    if (ori == dst) {
-      return;
-    }
-
-    let proPiece = '';
+  checkPromotion(ori, dst, pieceType) {
     // check for promotion
     if (
       (pieceType.toLocaleLowerCase() == 'p' &&
@@ -69,19 +63,18 @@ export class GameService {
         dst.charAt(1) == '1' &&
         this.gameStatus.turn.color == 'black')
     ) {
-      if (confirm('Promote to queen ?')) {
-        proPiece = this.gameStatus.turn.color == 'white' ? 'Q' : 'q';
-      } else {
-        if (confirm('Promote to rook ? Otherwise it will be bishop')) {
-          proPiece = this.gameStatus.turn.color == 'white' ? 'R' : 'r';
-        } else {
-          proPiece = this.gameStatus.turn.color == 'white' ? 'B' : 'b';
-        }
-      }
+      return true;
+    }
+    return false;
+  }
+
+  async movePiece(ori, dst, pieceType, proPiece) {
+    // Do nothing if ori == dst
+    if (ori == dst) {
+      return;
     }
 
     let move = ori + dst + proPiece.toLocaleLowerCase();
-
     // IF move is illegal  do nothing
     if (!this.gameStatus.turn.legalMoves.includes(move)) {
       return;
