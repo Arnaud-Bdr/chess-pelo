@@ -56,27 +56,18 @@ export class ChesscellComponent implements OnInit {
           promotionDisplay.style.opacity = '0';
         };
       };
-      document
-        .getElementById('queenChoice')
-        .removeEventListener('click', handler('Q', this.gameService));
+      // Reset all event handler if any
+      promotionDisplay.innerHTML = promotionDisplay.innerHTML;
+      // Add new event handl
       document
         .getElementById('queenChoice')
         .addEventListener('click', handler('Q', this.gameService));
       document
         .getElementById('rookChoice')
-        .removeEventListener('click', handler('R', this.gameService));
-      document
-        .getElementById('rookChoice')
         .addEventListener('click', handler('R', this.gameService));
       document
         .getElementById('bishopChoice')
-        .removeEventListener('click', handler('B', this.gameService));
-      document
-        .getElementById('bishopChoice')
         .addEventListener('click', handler('B', this.gameService));
-      document
-        .getElementById('knightChoice')
-        .removeEventListener('click', handler('N', this.gameService));
       document
         .getElementById('knightChoice')
         .addEventListener('click', handler('N', this.gameService));
