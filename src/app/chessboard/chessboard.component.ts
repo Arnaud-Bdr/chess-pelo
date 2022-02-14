@@ -50,6 +50,14 @@ export class ChessboardComponent implements OnInit {
 
   onGameStatusChanged(gameStatus) {
     this.gameStatus = gameStatus;
+
+    // Handle draw cases
+    if (gameStatus.turn.canClaimDraw || gameStatus.isInsufficientMaterial) {
+      this.isCheckmate = true;
+      this.makeJoTalk("C'est une draw Pélo");
+      return;
+    }
+
     if (gameStatus.turn.color == 'black') {
       // Check for msg from JO depending on position rating
       if (gameStatus.isCheckmate) {
@@ -93,8 +101,6 @@ export class ChessboardComponent implements OnInit {
   onChessboardSubjectChanged(chessboardSubject) {
     this.chessBoard = chessboardSubject.chessboard;
   }
-
-  test() {}
 
   makeJoTalk(msg: string) {
     let joMsgDiv = document.getElementById('joMsg');
