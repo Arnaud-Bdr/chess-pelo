@@ -43,7 +43,7 @@ export class ChessboardComponent implements OnInit {
     );
     this.gifs = this.is.getGifs();
     setTimeout(
-      () => this.makeJoTalk('Salut Pélo, prêt pour une partie ?'),
+      () => this.makeJoTalk('Hello les Pélos, prêt pour une partie ?'),
       1500
     );
   }
@@ -92,8 +92,6 @@ export class ChessboardComponent implements OnInit {
         this.isCheckmate = true;
         this.makeJoTalk('La partie est terminado Pélo');
         return;
-      } else if (gameStatus.turn.isInCheck) {
-        this.makeJoTalk('Echec au roi Pélo');
       }
     }
   }
@@ -161,10 +159,14 @@ export class ChessboardComponent implements OnInit {
       }
     } else {
       this.turnInSamePositionLevel++;
-      if (this.turnInSamePositionLevel > 1) {
+      if (this.turnInSamePositionLevel > 2) {
         this.turnInSamePositionLevel = 0;
         if (this.positionLevel == 2) {
           this.makeJoTalk(this.is.getRandomMsgEqualGame());
+        } else if (this.positionLevel < 2) {
+          this.makeJoTalk(this.is.getRandomMsgBadPosition());
+        } else if (this.positionLevel > 2) {
+          this.makeJoTalk(this.is.getRandomMsgGoodPosition());
         }
       }
     }
