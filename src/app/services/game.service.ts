@@ -139,8 +139,8 @@ export class GameService {
   }
 
   async setChessboardToInitialPosition() {
-    //let newGameStatus = await this.backendService.getInitBoardState();
-    let newGameStatus = await this.backendService.getBoardState(this.fenDebug);
+    let newGameStatus = await this.backendService.getInitBoardState();
+    let newGameStatus = await /this.backendService.getBoardState(this.fenDebug);
     this.lastMoveDst = '';
     this.lastMoveOri = '';
     this.whiteCanPlay = true;
