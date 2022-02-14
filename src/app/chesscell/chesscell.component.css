@@ -57,27 +57,27 @@ img {
   position: relative;
 }
 
-.r {
+.rb {
   background-image: url('https://github.com/Arnaud-Bdr/chess-pelo/blob/master/src/app/assets/pieces/br.png?raw=true');
 }
 
-.n {
+.nb {
   background-image: url('https://github.com/Arnaud-Bdr/chess-pelo/blob/master/src/app/assets/pieces/bk.png?raw=true');
 }
 
-.b {
+.bb {
   background-image: url('https://github.com/Arnaud-Bdr/chess-pelo/blob/master/src/app/assets/pieces/acezoo_bb.png?raw=true');
 }
 
-.q {
+.qb {
   background-image: url('https://github.com/Arnaud-Bdr/chess-pelo/blob/master/src/app/assets/pieces/andrea_botez_bq.png?raw=true');
 }
 
-.k {
+.kb {
   background-image: url('https://github.com/Arnaud-Bdr/chess-pelo/blob/master/src/app/assets/pieces/Jo_bk.png?raw=true');
 }
 
-.p {
+.pb {
   background-image: url('https://github.com/Arnaud-Bdr/chess-pelo/blob/master/src/app/assets/pieces/bp.png?raw=true');
 }
 

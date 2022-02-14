@@ -16,7 +16,11 @@
   <div
     class="piece"
     [tabindex]="cell.piece"
-    [class]="cell.piece"
+    [class]="
+      cell.piece.toLowerCase() == cell.piece && !(cell.piece == '')
+        ? cell.piece + 'b'
+        : cell.piece
+    "
     cdkDrag
     [cdkDragDisabled]="cell.piece == ''"
   >

@@ -10,7 +10,7 @@ export class InteractService {
 
   private joPunchlineCool = [
     'Tu joues bien Pélo, va falloir que je me concentre',
-    "Heureusement que ma spécialité c'est jouer des position perdante Pélo",
+    "Heureusement que ma spécialité c'est jouer des positions perdantes Pélo",
     'Je suis pas bien là, je fais des coups à la Acezoo',
     "T'es le cousin de MVL Pélo ? ",
     'Jolie pointe tactique Pélo, je suis pas bien',
