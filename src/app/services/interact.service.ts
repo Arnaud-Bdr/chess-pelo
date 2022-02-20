@@ -8,6 +8,8 @@ export class InteractService {
     { name: 'acezoo_surpris.gif', durationMS: 2500 },
   ];
 
+  lastIndex: number = -1;
+
   private joPunchlineCool = [
     'Tu joues bien Pélo, va falloir que je me concentre',
     "Heureusement que ma spécialité c'est jouer des positions perdantes Pélo",
@@ -72,26 +74,35 @@ export class InteractService {
   }
 
   getRandomPunchCool() {
-    let r = Math.floor(Math.random() * this.joPunchlineCool.length);
+    let r = this.getRandom(this.joPunchlineCool.length);
     return this.joPunchlineCool[r];
   }
   getRandomPunchNotCool() {
-    let r = Math.floor(Math.random() * this.joPunchlineNotCool.length);
+    let r = this.getRandom(this.joPunchlineNotCool.length);
     return this.joPunchlineNotCool[r];
   }
 
   getRandomMsgEqualGame() {
-    let r = Math.floor(Math.random() * this.joMsgEqualGame.length);
+    let r = this.getRandom(this.joMsgEqualGame.length);
     return this.joMsgEqualGame[r];
   }
 
   getRandomMsgBadPosition() {
-    let r = Math.floor(Math.random() * this.JoMsgBadPosition.length);
+    let r = this.getRandom(this.JoMsgBadPosition.length);
     return this.JoMsgBadPosition[r];
   }
 
   getRandomMsgGoodPosition() {
-    let r = Math.floor(Math.random() * this.joMsgGoodPosition.length);
+    let r = this.getRandom(this.joMsgGoodPosition.length);
     return this.joMsgGoodPosition[r];
+  }
+
+  getRandom(max: number) {
+    let r = Math.floor(Math.random() * max);
+    while (r == this.lastIndex && max > 0) {
+      r = Math.floor(Math.random() * max);
+    }
+    this.lastIndex = r;
+    return r;
   }
 }

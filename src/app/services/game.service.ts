@@ -130,7 +130,7 @@ export class GameService {
         this.gameStatus.turn.color == 'black' &&
         !this.gameStatus.isGameOver
       ) {
-        await setTimeout(() => this.updateGameIA(this.gameStatus), 1000);
+        await setTimeout(() => this.updateGameIA(this.gameStatus), 100);
       }
     } else {
       this.parseFenToChessoboard(this.gameStatus.fen);
